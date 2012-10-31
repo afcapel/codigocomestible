@@ -1,0 +1,23 @@
+<ul id="social-links">
+  <li>
+      <a target="_blank" rel="nofollow" data-url="{{post.url}}" data-text="{{post.title}}" class="socialite twitter-share" href="http://twitter.com/share">
+          <span class="vhidden">Share on Twitter</span>
+      </a>
+  </li>
+  <li>
+      <a target="_blank" rel="nofollow" data-href="{{post.url}}" class="socialite googleplus-one" href="https://plusone.google.com/_/+1/confirm?hl=en&amp;url={{post.url}}" data-annotation="none">
+        <span class="vhidden">Share on Google+</span>
+      </a>
+  </li>
+  <li>
+      <a target="_blank" rel="nofollow" data-show-faces="false" data-width="60" data-send="false" data-href="{{post.url}}" class="socialite facebook-like" href="http://www.facebook.com/sharer.php?u={{post.url}}">
+          <span class="vhidden">Share on Facebook</span>
+      </a>
+  </li>
+</ul>
+
+<script type="text/javascript">
+  $(function(){
+    Socialite.load('#share');
+  })
+</script>

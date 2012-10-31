@@ -1,0 +1,61 @@
+<nav role="navigation">
+  <ul class="main-navigation">
+    <form action="http://google.es" method="get" class="form-search">
+      <fieldset role="search">
+        <input type="hidden" name="q" value="site:{{ site.url | shorthand_url }}" />
+        <input class="search" type="text" name="q" results="0" placeholder="buscar"/>
+      </fieldset>
+    </form>
+    <li>
+      <a href="/atom.xml">
+        Feed RSS
+      </a>
+    </li>
+    <li><a href="/archives">Archivo</a></li>
+  </ul>
+</nav>
+
+<section>
+  <h4>Artículos recientes</h4>
+  <ul id="recent_posts">
+    {% for post in site.posts limit: site.recent_posts %}
+    <li class="post">
+      <a href="{{ post.url }}">{{ post.title }}</a>
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+
+<section>
+  <h4>Dónde puedes encontrarme</h4>
+
+  <ul>
+    <li>
+      <a href="mailto: afcapel at gmail dot com">
+        <img src="/images/email_32.png" width="32" height="32"/>
+        E-mail
+      </a>
+    </li>
+
+   <li>
+    <a href="http://twitter.com/afcapel">
+      <img src="/images/twitter_32.png" width="32" height="32"/>
+      Twitter
+    </a>
+   </li>
+
+   <li>
+    <a href="http://github.com/afcapel">
+      <img src="/images/github_32.png" width="32" height="32"/>
+      Github
+    </a>
+   </li>
+
+  <li>
+    <a href="https://plus.google.com/107729440292621307525?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32"/>
+      Google+
+    </a>
+  </li>
+</ul>
+</section>

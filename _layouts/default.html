@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+{% capture root_url %}{{ site.root | strip_slash }}{% endcapture %}
+<head>
+  <meta charset="utf-8">
+  <title>{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}</title>
+  <meta name="author" content="Alberto Fernández-Capel">
+
+  {% capture description %}{% if page.description %}{{ page.description }}{% else %}{{ content | raw_content }}{% endif %}{% endcapture %}
+  <meta name="description" content="{{ description | strip_html | condense_spaces | truncate:150 }}">
+  {% if page.keywords %}<meta name="keywords" content="{{ page.keywords }}">{% endif %}
+
+  <link href="{{ root_url }}/favicon.png" rel="icon">
+  <link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700|Open+Sans' rel='stylesheet' type='text/css'>
+  <link href="{{ root_url }}/stylesheets/comestible.css?v=2" media="screen, projection" rel="stylesheet" type="text/css">
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+  <script src="/javascripts/socialite.min.js"></script>
+  <link href="{{ site.subscribe_rss }}" rel="alternate" title="{{site.title}}" type="application/atom+xml">
+</head>
+<body>
+  <div class="container">
+    <header role="banner" id="main-header" class="row">
+      <hgroup>
+        <h1 id="blog-title" class="span3 offset1"><a href="{{ root_url }}/">Código Comestible</a></h1>
+        <h2 id="blog-subtitle" class="span6">"La belleza será comestible o no será" <br/> - Salvador Dalí</h2>
+      </hgroup>
+    </header>
+
+    <div class="row">
+      <section id="main" class="span8">
+        {{ content | expand_urls: root_url }}
+      </section>
+      <aside id="sidebar" class="offset1 span3">
+        {% include sidebar.html %}
+      </aside>
+    </div>
+
+
+    <footer role="contentinfo" id="main-footer">
+      <p>Copyright &copy; {{ site.time | date: "%Y" }} - Alberto Fernández-Capel</p>
+    </footer>
+  </div>
+
+  {% include google_analytics.html %}
+</body>
+</html>

@@ -1,0 +1,23 @@
+---
+layout: default
+single: true
+---
+
+<article class="entry row" role="article" id="post">
+  <div class="meta span1">
+    <time class="date" datetime="{{ date_to_xmlschema }}" pubdate>{{ page.date_formatted }}{{ post.date_formatted }}</time>
+  </div>
+  <div class="content span7">
+    <h1 class="title">{{ page.title }}</h1>
+    {{ content }}
+
+    <div id="share">
+      {% include share.html %}
+    </div>
+
+    <section id="comments">
+      <h3>Comments</h3>
+      <div id="disqus_thread" aria-live="polite">{% include disqus.html %}</div>
+    </section>
+  </div>
+</article>

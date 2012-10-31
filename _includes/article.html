@@ -1,0 +1,16 @@
+<article class="entry" role="article">
+  <div class="meta span1">
+    <time class="date" datetime="{{ date_to_xmlschema }}" pubdate>{{ page.date_formatted }}{{ post.date_formatted }}</time>
+  </div>
+
+  <div class="content span7">
+    {% if index %}
+      <h1 class="entry-title"><a href="{{ root_url }}{{ post.url }}">{{post.title}}</a></h1>
+    {% else %}
+      <h1 class="entry-title">{{ post.title }}</h1>
+    {% endif %}
+
+    {{ content }}
+  </div>
+</article>
+

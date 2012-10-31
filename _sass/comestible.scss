@@ -1,0 +1,131 @@
+// Custom bootstrap variables
+$baseFontSize:   16px;
+$baseLineHeight: 24px;
+$sansFontFamily: 'Open Sans', 'Helvetica Neue', helvetica, arial, sans-serif;
+
+$headingsColor:  #8c0014;
+$headingsFontWeight: 300;
+$headingsFontFamily: 'Oswald', 'Helvetica Neue', helvetica, arial, sans-serif;
+
+$mono: Menlo, Monaco, "Andale Mono", "lucida console", "Courier New", monospace !default;
+
+$gray: #888;
+$solarized: light;
+
+@import "compass";
+
+@import "bootstrap/variables";
+@import "bootstrap/mixins";
+@import "bootstrap/reset";
+@import "bootstrap/scaffolding";
+@import "bootstrap/grid";
+@import "bootstrap/layouts";
+@import "bootstrap/type";
+@import "bootstrap/forms";
+
+
+@import "bootstrap/breadcrumbs";
+@import "bootstrap/pagination";
+@import "bootstrap/pager";
+@import "bootstrap/thumbnails";
+@import "bootstrap/utilities";
+
+@import "solarized";
+@import "syntax";
+@import "resume";
+
+article,aside,nav,section{
+  h1{ font-size: 1.17em; }
+}
+
+#main-header{
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+  #blog-title{
+    margin-top: 20px;
+  }
+
+  #blog-subtitle{
+    font-size: 16px;
+    line-height: 28px;
+  }
+}
+
+blockquote{
+  color: $gray;
+  padding: 0 2em;
+}
+
+.meta{
+  margin-top: 10px;
+  font-size: 12px;
+  color: $gray;
+}
+
+#sidebar{
+  nav, section{
+    margin-bottom: 40px;
+
+    ul, ol{
+      list-style: none;
+      margin: 10px 0;
+    }
+
+    li{
+      margin: 0 0 14px;
+      font-size: 14px;
+      color: $gray;
+    }
+    img{
+      margin-right: 4px;
+    }
+  }
+}
+
+#social-links{
+  @include clearfix;
+  padding: 0;
+  margin: 0;
+
+  list-style: none;
+  li{
+    float: left;
+    min-width: 80px;
+  }
+}
+
+#comments{
+  clear: left;
+  margin-top: 40px;
+}
+
+#blog-archives{
+  .year-archive{
+    margin: 50px 0 10px 0;
+    border-bottom: 1px solid $gray;
+  }
+
+  .archive-post{
+    margin-bottom: 20px;
+
+    h1{
+      line-height: 1.8em;
+      margin-left: 90px;
+    }
+  }
+
+  time{
+    font-size: 12px;
+    color: $gray;
+    float: left;
+    width: 90px;
+    margin-top: 5px;
+  }
+}
+
+#main-footer{
+  margin: 30px auto;
+  font-size: 12px;
+  text-align: center;
+}

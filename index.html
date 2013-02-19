@@ -11,11 +11,11 @@ layout: default
 
   <div class="span7 offset1">
     {% if paginator.next_page %}
-      <a class="prev" href="{{paginator.next_page}}">&larr; Más recientes</a>
+      <a class="prev" href="{{paginator.next_page}}">&larr; Más antiguos</a>
     {% endif %}
     |
     {% if paginator.previous_page %}
-       <a class="next" href="{{paginator.previous_page}}">Más antiguos &rarr;</a>
+       <a class="next" href="{{paginator.previous_page}}">Más  recientes&rarr;</a>
     {% endif %}
   </div>
 </div>

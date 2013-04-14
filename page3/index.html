@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="author" content="Alberto Fernández-Capel">
+
+  
+  <meta name="description" content="
+  
+  
+  
+    
+  
+    
+  
+
+  
+    
+      Por qué no funciona el modelo en cascada
+    
+
+    
+
+La ingeniería del software es una recién nacida: la h...">
+  
+
+  <link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700|Open+Sans' rel='stylesheet' type='text/css'>
+  <link href="/stylesheets/comestible.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+  <script src="/javascripts/socialite.min.js"></script>
+  <link href="" rel="alternate" title="" type="application/atom+xml">
+</head>
+<body>
+  <div class="container">
+    <header role="banner" id="main-header" class="row">
+      <hgroup>
+        <h1 id="blog-title" class="span3 offset1"><a href="//">Código Comestible</a></h1>
+        <h2 id="blog-subtitle" class="span6">"La belleza será comestible o no será" <br/> - Salvador Dalí</h2>
+      </hgroup>
+    </header>
+
+    <div class="row">
+      <section id="main" class="span8">
+        <div id="blog-index" class="row">
+  
+  
+  
+    <article class="entry" role="article">
+  <div class="meta span1">
+    <time class="date" datetime="" pubdate></time>
+  </div>
+
+  <div class="content span7">
+    
+      <h1 class="entry-title"><a href="/2010/06/03/por-que-no-funciona-el-modelo-en-cascada/">Por qué no funciona el modelo en cascada</a></h1>
+    
+
+    <p><a href="http://www.flickr.com/photos/tonymangan/611780383/" title="Lumsdale Waterfall 1 by ~~Tone~~, on Flickr"><img src="http://farm2.static.flickr.com/1133/611780383_6e7c8d2bc8.jpg" width="363" height="500" alt="Lumsdale Waterfall 1" /></a></p>
+
+<p>La ingeniería del software es una recién nacida: la humanidad lleva miles de años construyendo edificios, barcos y puentes, pero sólo unas décadas construyendo software.</p>
+
+<p>Cuando nació la ingeniería del software se fijó en sus hermanas para descubrir como se hace <em>eso</em> de construir sistemas complejos. Y, básicamente, la ingeniería del software copió los métodos tradicionales en lo que se conoce como <em>Modelo en Cascada</em>.</p>
+
+<p>En el Modelo en Cascada, los ingenieros hacen  primero un análisis de los requisitos del proyecto: Si se va a construir un puente, hay que saber qué capacidad de tráfico tiene que atravesar el puente, los vientos, mareas y temblores que debe soportar, etc. Con todos estos requisitos se hace un documento funcional explicando cómo debe funcionar el puente cuando esté acabado. Al documento funcional le sigue un diseño técnico: en una obra serían los planos que modelarían el puente, las instrucciones para construir el puente. Una vez se tiene un plan, hay que construir el puente. Cuando el puente está construido, pasamos a la fase de mantenimiento. Este es, muy resumido, el modelo en cascada.</p>
+
+<p>Este sistema funciona razonablemente bien en las ingenierías tradicionales, pero fracasa estrepitosamente en la ingeniería del software. ¿Por qué? Porque <strong>los requisitos y el proceso de construcción del software son de naturaleza completamente distinta al los de la construcción de un puente</strong>.</p>
+
+<p>Cuando se construye un puente, todos los requisitos y las funciones que debe cumplir <strong>deben estar especificados de antemano</strong>. Hay que hacer un plano que detalle al milímetro cómo va a ser el puente y seguirlo al pie de la letra. Una vez se empieza a construir un puente, no podemos cambiar de opinión a la mitad y decir, "<em>no nos habíamos dado cuenta, pero necesitamos que los barcos puedan navegar por debajo del puente. Cámbiame el puente que estas haciendo por un puente levadizo</em>". Por desgracia, una vez hemos puesto los cimientos, el diseño no se puede alterar demasiado.</p>
+
+<p>En cambio, <strong>en el desarrollo de software los requisitos cambian constantemente</strong>. Y eso no es algo malo, sino que es una ventaja que deben aprovechar los buenos desarrolladores.</p>
+
+<p>En vez de planificar todo de antemano, y seguir el plan al pie de la letra, es bueno permitir cierta flexibilidad para que el proyecto vaya creciendo orgánicamente y se vaya definiendo con el tiempo. Puede que el cliente se dé cuenta de que lo que ha pedido no es exactamente lo que necesita, sino que, en realidad, quiere un producto ligeramente diferente. O muy diferente. Eso está bien: <strong>nos hemos dado cuenta y podemos corregirlo antes de que el cliente se quede con un producto que no resuelve sus problemas. Cambiar el diseño a mitad de proyecto hace que el producto final sea más eficiente y, sobre todo, satisfaga mejor las necesidades del cliente</strong>.</p>
+
+<p>Muchos proyectos tremendamente exitosos empezaron siendo siendo una cosa y terminaron siendo otra completamente distinta, pero fue <strong>precisamente este cambio el que les permitió triunfar</strong>. Flickr, por ejemplo, empezó como un juego online, pero los desarrolladores se dieron cuenta de que una inocente funcionalidad que permitía a los jugadores compartir fotos se estaba convirtiendo en la estrella de su servicio. Fueron inteligentes y cambiaron sus requisitos iniciales; acabaron convirtiendo un juego medianamente exitoso, en un servicio para compartir fotos <em>tremendamente</em> exitoso.</p>
+
+<p>Flickr no es un caso único. Blogger nació como un servicio de gestión de proyectos; en sus comienzos, Paypal era una plataforma para hacer micropagos con las Palm Pilot... Puede decirse que la mayoría de los proyectos exitosos no lo son por sus ideas originales, sino por la <strong>facilidad que tienen de adaptarse a los cambios y a las nuevas oportunidades</strong>.</p>
+
+<p>Pero -estaréis pensando- ¡cambiar los requisitos a mitad de un proyecto tiene un coste muy grande! Eso no se puede hacer. ¿No?</p>
+
+<p>Sí y no. Cambiar los requisitos tiene un coste muy grande cuando se sigue el modelo en cascada, en el que toda <strong>la planificación se hace de antemano, y cada fase depende muchísimo de que la anterior se haya hecho bien</strong>. En esas circunstancias, cambiar la planificación significa echar por tierra mucho esfuerzo y trabajo.</p>
+
+<p>Pero el modelo en cascada no es la única manera de hacer software.</p>
+
+<p><a href="http://www.flickr.com/photos/44799719@N00/324947287/" title="Jägala waterfall  part III by fireramsey, on Flickr"><img src="http://farm1.static.flickr.com/144/324947287_feb20f51ea.jpg" width="500" height="375" alt="Jägala waterfall  part III" /></a>
+<em>(Las cascadas son bonitas, pero no para hacer software)</em></p>
+
+<p>En los últimos diez años han surgido una variedad de <strong>metodologías ágiles</strong> que apuestan por desarrollar software de forma <strong>iterativa</strong>: se van añadiendo funcionalidades en iteraciones pequeñas, de unas pocas semanas. Tras cada iteración se evalúan los requisitos para ver si siguen siendo las necesidades <strong>reales</strong> del cliente, y en consecuencia se planea la próxima iteración. Es natural posponer los problemas hasta que tengamos más datos, y si necesitamos cambiar la planificación, tampoco perdemos tanto trabajo porque, en realidad, tampoco hemos invertido tanto esfuerzo planificando.</p>
+
+<p>En el desarrollo ágil los cambios de requisitos no se ven como un inconveniente, sino como una ventaja potencial. Como dice <a href="http://agilemanifesto.org/">el Manifiesto Ágil</a>:</p>
+
+<blockquote>Valoramos más la respuesta ante el cambio que el seguir un plan.
+...
+Aceptamos que los requisitos cambien, incluso en etapas tardías del desarrollo. Los procesos Ágiles aprovechan el cambio para proporcionar ventaja competitiva al cliente.</blockquote>
+
+
+  </div>
+</article>
+
+
+  
+  
+    <article class="entry" role="article">
+  <div class="meta span1">
+    <time class="date" datetime="" pubdate></time>
+  </div>
+
+  <div class="content span7">
+    
+      <h1 class="entry-title"><a href="/2010/05/14/los-buenos-programadores-son-un-chollo/">Los buenos programadores son un chollo</a></h1>
+    
+
+    <p>Existe un trabajo seminal en la ingeniería del software: <em>The Mythical Man Month</em>. En este libro de 1975 Fred Brooks ya citaba algunos estudios en los que se  mostraba que <strong>los mejores programadores pueden ser hasta diez veces más productivos que un programador medio</strong>.</p>
+
+<blockquote>Los encargados de un equipo de programación han reconocido desde hace tiempo una gran diferencia entre la productividad de los buenos programadores y los malos. Pero cuando vimos estas magnitudes medidas, todos nos quedamos asombrados. En uno de sus estudios, Sackman, Erikson, y Grant midieron el rendimiento de un grupo de programadores experimentados. Dentro de este grupo, los ratios entre los mejores y los peores eran de media 10:1 en las medidas de productividad y de un increíble 5:1 para las medidas de rendimiento del programa. (...) Los datos también mostraron que no existe ninguna relación entre la experiencia y el rendimiento, aunque dudo que esto sea siempre cierto.
+
+*Frederick P. Brooks, The Mythical Man-Month*
+</blockquote>
+
+
+<p>Este hecho es muy importante para las empresas que necesitan programadores ya que <strong>un programador, por muy productivo que sea, nunca cobra diez veces más que un compañero</strong>. Imaginemos, por ejemplo, que un programador normalito puede cobrar unos 25.000 euros al año, mientras que su compañero, un programador fuera de serie, puede cobrar el doble: 50.000 euros al años. Si el programador fuera de serie puede hacer el trabajo de 10 programadores normalitos, eso quiere decir que contratándolo la empresa gasta más en un sueldo, pero se ahorra otros nueves sueldos. En nuestro ejemplo, el ahorro sería de 200.000 euros al año, o cuatro veces más que el sueldo del programador fuera de serie.</p>
+
+<p>En resumen: <strong>los buenos programadores pueden parecer caros pero si hacemos las cuentas, en realidad son un chollo.</strong></p>
+
+  </div>
+</article>
+
+
+  
+  
+    <article class="entry" role="article">
+  <div class="meta span1">
+    <time class="date" datetime="" pubdate></time>
+  </div>
+
+  <div class="content span7">
+    
+      <h1 class="entry-title"><a href="/2010/04/06/fallecidos-accidente-trafico-cinturon-seguridad/">Estadísticas tontas: El 77% de los fallecidos en accidente de tráfico llevaba puesto el cinturón de seguridad</a></h1>
+    
+
+    <p>Es curioso como después de cualquier período de vacaciones los periodistas hacen recuento de las bajas producidas en la carretera y nos bombardean con datos completamente irrelevantes, como que<a href="http://www.rtve.es/noticias/20090414/los-muertos-carretera-semana-santa-llevaba-cinturon-seguridad/264278.shtml"> el 23% de los fallecidos en las carreteras no llevaban puesto el cinturón de seguridad</a>.</p>
+
+<p>El único problema es que ese dato no tiene el menor significado estadístico. Usando la misma lógica podríamos decir que <strong>el 77% de los muertos en accidente de tráfico sí usaban el cinturón de seguridad</strong>. O que el 45% de los fallecidos había desayunado con café con leche y un 17,8% leche con colacao. <strong>Estas cifras no nos dicen nada de la utilidad del cinturón de seguridad, del café con leche o del colacao, para proteger a los conductores.</strong></p>
+
+<p>Una comparación con sentido sería, por ejemplo, decir que sólo el 10% de los conductores no usan cinturón de seguridad, pero que esa cifra se eleva hasta el 23% entre los muertos en accidente de tráfico. De esa manera, sí quedaría demostrado que el cinturón de seguridad salva vidas en la carretera. Pero se ve que la DGT y la mayoría de los medios andan bastante peleados con las matemáticas en general y la estadística en particular.</p>
+
+<p>Tampoco os confundáis sobre el motivo de esta entrada: <strong>utilizad el cinturón de seguridad, es muy importante y puede salvaros la vida. Esta entrada no es contra el cinturón de seguridad</strong>, sino contra las estadísticas estúpidas, las instituciones que las fabrican y los medios que las repiten.</p>
+
+  </div>
+</article>
+
+
+  
+  
+    <article class="entry" role="article">
+  <div class="meta span1">
+    <time class="date" datetime="" pubdate></time>
+  </div>
+
+  <div class="content span7">
+    
+      <h1 class="entry-title"><a href="/2010/04/04/principio-pareto/">El principio de Pareto</a></h1>
+    
+
+    <p>El Principio de Pareto dice <strong>que el 80% de los resultados se producen por el 20% de las causas</strong>. Fue formulado en 1906 por el economista italiano Wilfredo Pareto, quién observó que el 80% de la tierra en Italia era propiedad del 20% de la población. En el mundo de los negocios a menudo sirve como regla heurística, es decir, para calcular a ojo de buen cubero, por ejemplo, que el 80% de los beneficios suele venir del 20% de los clientes.</p>
+
+<p>Es un principio general que puede servir como aproximación en muchos campos y que es muy importante en ingeniería del software, dónde suele ocurrir que <strong>el 80% de la funcionalidad del software se puede desarrollar con un 20% del esfuerzo</strong>.</p>
+
+<p>Parece una afirmación peregrina, y evidentemente los porcentajes no son exactos, sino que sólo pretenden ser una mera aproximación. Sin embargo, al evaluar cualquier proyecto que conozcas o en el que hayas trabajado, imagina cual sería el coste y el beneficio de hacer sólo las partes más sencillas de la aplicación: obviar los casos complicados, no hacer un sistema de control de errores sofisticado, no validar las entradas de los usuarios y no preocuparse por si una de cada 10 veces la aplicación puede fallar. Así, ciertamente, se puede hacer una aplicación que parece funcionar, digamos un 80% del tiempo, y con un esfuerzo mucho inferior al que costaría desarrollar una aplicación completa.</p>
+
+<p>Otras aplicaciones interesantes del Principio de Pareto a la ingeniería del software podrían ser:</p>
+
+<ul>
+<li>Testar el 20% del código sirve para eliminar el 80% de los bugs.</li>
+<li>El 80% del tiempo una aplicación sólo ejecuta un 20% del código y utiliza un 20% del conjunto de datos.</li>
+<li>Por eso mismo, optimizar el 20% del código o cachear el 20% de los datos puede dar lugar a un 80% de mejora del rendimiento.</li>
+</ul>
+
+
+<p>Este principio también explica por qué las aplicaciones que parecen casi terminadas suelen demorarse al final del proyecto, cuando sólo falta por resolver la infinidad de cabos sueltos que siempre se dejan para el final: <strong>lo que más cuesta en una aplicación no es construir el esqueleto, sino pulir los detalles</strong>.</p>
+
+<p>Pero el principio de Pareto sirve especialmente para minimizar el riesgo que se corre al desarrollar una aplicación y se utiliza sobre todo en las metodologías ágiles de desarrollo de software. Según esta escuela de la ingeniería del software, <strong>es muy importante que los desarrolladores tengan cuanto antes feedback de cómo funciona el producto que están desarrollando y si satisface, o no, las necesidades del cliente</strong>.</p>
+
+<p>Si desarrollamos primero las partes más complicadas de un producto, sin tener nada que enseñar hasta que todas las piezas estén completas, y esperamos hasta el último momento para desplegarlo y enseñárselo al cliente, nos podemos encontrar con la situación, tan común como desagradable, de que el producto cumple los requisitos funcionales que pidió el cliente, pero no es exactamente lo que el cliente necesita. No obstante, esto no lo saben ni el cliente ni los desarrolladores hasta que ven el software funcionando e intentan probarlo. El cliente acaba insatisfecho con el software que ha comprado y el desarrollador se siente frustrado porque ha trabajo duro para cumplir todos los requisitos funcionales pero el cliente no parece apreciar el software que tanto trabajo le ha costado construir.</p>
+
+<p>En cambio, si desarrollamos primero las partes más útiles del sistema, <strong>con un 20% del esfuerzo ya se puede ver si el diseño está bien hecho y si la aplicación es realmente lo que el cliente necesita.</strong> Si hay que hacer cambios en el diseño o en los requisitos, cuanto antes se definan esos cambios más útiles serán y menos costará implementarlos.</p>
+
+<p>El principio de Pareto no es una ley matemática exacta y no puede utilizarse como dogma, sino más bien como una regla del sentido común, pero aplicado con moderación puede servir para planificar correctamente un proyecto y evitar el riesgo de malgastar recursos en esfuerzos inútiles.</p>
+
+<p>Como escriben Kent Beck y Martin Fowler en <em><a href="http://www.amazon.com/Planning-Extreme-Programming-Kent-Beck/dp/0201710919">Planning Extreme Programming</a></em>:</p>
+
+<blockquote>Los programadores de software están acostumbrados a tratar con la regla del 20-80 -el 80% de los beneficios provienen del 20% del trabajo. La programación XP hace uso de está regla -pon el 20% más valioso de la funcionalidad en producción, haz el 20% más valioso del diseño, confía en la regla del 20-80 para postergar la optimización. </blockquote>
+
+
+
+
+  </div>
+</article>
+
+
+  
+  
+    <article class="entry" role="article">
+  <div class="meta span1">
+    <time class="date" datetime="" pubdate></time>
+  </div>
+
+  <div class="content span7">
+    
+      <h1 class="entry-title"><a href="/2010/03/29/java-es-lento/">¿Java es lento?</a></h1>
+    
+
+    <p>Lo que voy a decir no es nada muy novedoso. En realidad, lo más llamativo es que en pleno año 2010 haya que seguir repitiendo algunas verdades tan trilladas. Pero me temo que sigue siendo necesario: muchos profesionales de la informática repiten una y otra vez el antiguo mantra de que <em>Java es demasiado lento</em>. Y no me refiero sólo al chaval que leyó hace diez años algo sobre Java en una revista de informática. Yo se lo he oído repetir incluso a varios responsables de importantes proyectos, de esos proyectos que cuestan <strong>mucho</strong> dinero, unos profesionales de los que cabría esperar, al menos, algunas nociones básicas de como funciona una plataforma. Y, sin embargo, ahí están repitiendo los mismos clichés que en 1996, como si el mundo no hubiera cambiado.</p>
+
+<p>¿Como surgió el mito de que Java es lento?</p>
+
+<p>Cuando Java nació en el año 1995, las aplicaciones web aún eran ciencia ficción. En esa época <a href="http://www.jcmit.com/memoryprice.htm">un megabyte de memoria costaba 30$</a>  ( &asymp; 30.000 dólares 1GB) y un procesador Pentium a 120Mhz <a href="http://processortimeline.info/proc1995.htm">salía a 935$ a precio de mayorista</a>.</p>
+
+<p>El desarrollo se centraba principalmente en aplicaciones de escritorio y los principales rivales de Java eran C y C++. A diferencia de C o C++, el código fuente de Java no se compila directamente a código máquina, sino que se transforma primero en un formato intermedio, el bytecode, que luego es interpretado por la máquina virtual.</p>
+
+<p>Los primeros benchmarks no tardaron en llegar e indicaban claramente que un programa Java se ejecutaba entre 10 y 30 veces más lento que un programa equivalente en C++.</p>
+
+<p>Esto era Java alrededor de 1996, hace catorce años, es decir, una eternidad en el mundo de la informática.</p>
+
+<p>Hoy día las cosas han cambiado mucho. En primer lugar, la propia máquina virtual de Java (la JVM) ha evolucionado pasmosamente hasta convertirse en una pieza de software altamente optimizada.</p>
+
+<p>La máquina virtual de Java cuenta hoy en día con compiladores JIT (Just In Time) que traducen el bytecode a código nativo de la máquina. Además, la JVM también puede monitorizar qué partes del programa se ejecutan más a menudo y optimizar la compilación para el uso real que se le da a la aplicación. Es lo que se conoce como Optimización Adaptativa, y es una ventaja muy importante con la que no cuentan los compiladores tradicionales.</p>
+
+<p>Esas son las dos principales mejoras de las que se ha beneficiado la máquina virtual de Java, <a href="http://en.wikipedia.org/wiki/Java_performance#Virtual_machine_optimization_techniques">pero no las únicas</a>.</p>
+
+<p>El resultado de todos estos cambios, es que Java, a día de hoy es tan rápido o más que C++. Dependiendo de quién haga el benchmark, Java resulta ser un poco más rápido o un poco más lento.</p>
+
+<p>Por ejemplo, el <a href="http://shootout.alioth.debian.org/u32/which-programming-languages-are-fastest.php">The Computer Language Benchmarks Game </a>es un juego de benchmarks basados en pruebas de cálculo aritmético sencillas donde se comparan distintos lenguajes. En esas pruebas Java, cuando descontamos el tiempo de arranque de la máquina virtual, aparece en los primeros puestos, sólo por detrás de C, C++ y ATS, sacando bastante ventaja a otros lenguajes como C# y barriendo literalmente a los lenguajes dinámicos como Ruby, Python o PHP. Java resulta ser unas 80 veces más rápido que PHP.</p>
+
+<p>No obstante, los benchamarks que miden calculos aritméticos sencillos no se correlacionan demasiado bien con el rendimiento de sistemas complejos, donde la interacción entre distintas partes de la aplicación, las librerías de E/S, o la concurrencia son muy importantes. En benchmarks donde se comparan sistemas complejos, Java se muestra a menudo más rápido que C++. Por ejemplo, algunos <a href="http://www.devshed.com/c/a/BrainDump/Tomcat-Benchmark-Procedure/1/">benchmarks indican que el servidor web Apache Tomcat (escrito en Java) puede ser más rápido que su primo Apache httpd</a> (escrito en C).</p>
+
+<p>Pero todo esto tiene una importancia relativa, porque el mayor cambio que ha habido en el mundo de Java no ha sucedido dentro de la plataforma, sino fuera de ella. <strong>Los principales rivales de Java para crear aplicaciones web ya no son C y C++ sino, más bien, PHP, Ruby o Python</strong>. Y Java es mucho más rápido que cualquiera de estas tres alternativas. Y lo que es peor: tampoco importa. Ruby, por ejemplo, es lo suficientemente rápido para hacer aplicaciones web con un buen rendimiento. <a href="http://codigocomestible.com/2010/03/28/mitos-escalabilidad-aplicaciones-web/">Como ya he explicado en otra ocasión, el hecho de que Ruby sea más lento que Java no lo hace menos escalable</a>.</p>
+
+<p>Pero, me diréis, "<em>existen muchas aplicaciones en Java leeeentas y pesadas, yo las he visto. Fíjate en Eclipse, me puedo tomar un café mientras arranca.</em>" Y es cierto. Pero eso no es culpa de la plataforma Java, sino de los programadores que crearon esos engendros. Durante muchos años, J2EE (el entorno en el que se han desarrollado la mayoría de las aplicaciones Java empresariales) ha sido una plataforma sobrecargada de ornamentos inútiles y pesados. No es de extrañar que una aplicación que usa los EJB 2.0 distribuidos vaya lenta. Pero el fallo está en utilizar EJBs distribuidos, no en el lenguaje de programación ni en la máquina virtual.</p>
+
+<p>Y eso nos lleva a la verdadera razón de por qué ha sobrevivido tanto tiempo la monserga de que Java es lento: es una excusa perfecta para hacer software malo. Los desarrolladores pueden hacer un truño de aplicación, y cuando no funcione bien se encogerán de hombros y dirán: '<em>qué quieres, no es culpa mía, ya sabes que Java es lento</em>'.</p>
+
+  </div>
+</article>
+
+
+  
+
+  <div class="span7 offset1">
+    
+      <a href="/page4">&larr; Más antiguos</a>
+    
+    |
+    
+      
+      <a class="next" href="/page2">Más  recientes&rarr;</a>
+      
+    
+  </div>
+
+
+</div>
+
+      </section>
+      <aside id="sidebar" class="offset1 span3">
+        <nav role="navigation">
+  <ul class="main-navigation">
+    <form action="http://google.es/search" method="get" class="form-search">
+      <fieldset role="search">
+        <input type="hidden" name="sitesearch" value="codigocomestible.com" />
+        <input class="search" type="text" name="q" results="0" placeholder="buscar"/>
+      </fieldset>
+    </form>
+    <li>
+      <a href="/atom.xml">
+        Feed RSS
+      </a>
+    </li>
+    <li><a href="/archives">Archivo</a></li>
+  </ul>
+</nav>
+
+<section>
+  <h4>Artículos recientes</h4>
+  <ul id="recent_posts">
+    
+    <li class="post">
+      <a href="/2011/01/24/flujo-la-psicologia-de-la-experiencia-optima/">Flujo, la psicología de la experiencia óptima</a>
+    </li>
+    
+    <li class="post">
+      <a href="/2010/09/24/100-de-cobertura-del-codigo/">100% de cobertura del código</a>
+    </li>
+    
+    <li class="post">
+      <a href="/2010/07/07/software-con-opinion/">Software con opinión</a>
+    </li>
+    
+    <li class="post">
+      <a href="/2010/07/06/paralisis-por-analisis/">Parálisis por análisis</a>
+    </li>
+    
+    <li class="post">
+      <a href="/2010/07/06/fuerza-de-voluntad-recurso-finito/">La fuerza de voluntad es un recurso finito</a>
+    </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h4>Dónde puedes encontrarme</h4>
+
+  <ul>
+    <li>
+      <a href="mailto: afcapel at gmail dot com">
+        <img src="/images/email_32.png" width="32" height="32"/>
+        E-mail
+      </a>
+    </li>
+
+   <li>
+    <a href="http://twitter.com/afcapel">
+      <img src="/images/twitter_32.png" width="32" height="32"/>
+      Twitter
+    </a>
+   </li>
+
+   <li>
+    <a href="http://github.com/afcapel">
+      <img src="/images/github_32.png" width="32" height="32"/>
+      Github
+    </a>
+   </li>
+
+  <li>
+    <a href="https://plus.google.com/107729440292621307525?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32"/>
+      Google+
+    </a>
+  </li>
+</ul>
+</section>
+      </aside>
+    </div>
+
+
+    <footer role="contentinfo" id="main-footer">
+      <p>Copyright &copy; 2013 - Alberto Fernández-Capel</p>
+    </footer>
+  </div>
+
+  <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35983929-1']);
+  _gaq.push(['_setDomainName', 'codigocomestible.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</body>
+</html>

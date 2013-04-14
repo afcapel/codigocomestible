@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+
+<head>
+  <meta charset="utf-8">
+  <title>¿Java es lento? - </title>
+  <meta name="author" content="Alberto Fernández-Capel">
+
+  
+  <meta name="description" content="
+  
+    
+  
+  
+    ¿Java es lento?
+    Lo que voy a decir no es nada muy novedoso. En realidad, lo más llamativo es que en pleno año 2010 haya que ...">
+  
+
+  <link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700|Open+Sans' rel='stylesheet' type='text/css'>
+  <link href="/stylesheets/comestible.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+  <script src="/javascripts/socialite.min.js"></script>
+  <link href="" rel="alternate" title="" type="application/atom+xml">
+</head>
+<body>
+  <div class="container">
+    <header role="banner" id="main-header" class="row">
+      <hgroup>
+        <h1 id="blog-title" class="span3 offset1"><a href="//">Código Comestible</a></h1>
+        <h2 id="blog-subtitle" class="span6">"La belleza será comestible o no será" <br/> - Salvador Dalí</h2>
+      </hgroup>
+    </header>
+
+    <div class="row">
+      <section id="main" class="span8">
+        <article class="entry row" role="article" id="post">
+  <div class="meta span1">
+    <time class="date" datetime="" pubdate></time>
+  </div>
+  <div class="content span7">
+    <h1 class="title">¿Java es lento?</h1>
+    <p>Lo que voy a decir no es nada muy novedoso. En realidad, lo más llamativo es que en pleno año 2010 haya que seguir repitiendo algunas verdades tan trilladas. Pero me temo que sigue siendo necesario: muchos profesionales de la informática repiten una y otra vez el antiguo mantra de que <em>Java es demasiado lento</em>. Y no me refiero sólo al chaval que leyó hace diez años algo sobre Java en una revista de informática. Yo se lo he oído repetir incluso a varios responsables de importantes proyectos, de esos proyectos que cuestan <strong>mucho</strong> dinero, unos profesionales de los que cabría esperar, al menos, algunas nociones básicas de como funciona una plataforma. Y, sin embargo, ahí están repitiendo los mismos clichés que en 1996, como si el mundo no hubiera cambiado.</p>
+
+<p>¿Como surgió el mito de que Java es lento?</p>
+
+<p>Cuando Java nació en el año 1995, las aplicaciones web aún eran ciencia ficción. En esa época <a href="http://www.jcmit.com/memoryprice.htm">un megabyte de memoria costaba 30$</a>  ( &asymp; 30.000 dólares 1GB) y un procesador Pentium a 120Mhz <a href="http://processortimeline.info/proc1995.htm">salía a 935$ a precio de mayorista</a>.</p>
+
+<p>El desarrollo se centraba principalmente en aplicaciones de escritorio y los principales rivales de Java eran C y C++. A diferencia de C o C++, el código fuente de Java no se compila directamente a código máquina, sino que se transforma primero en un formato intermedio, el bytecode, que luego es interpretado por la máquina virtual.</p>
+
+<p>Los primeros benchmarks no tardaron en llegar e indicaban claramente que un programa Java se ejecutaba entre 10 y 30 veces más lento que un programa equivalente en C++.</p>
+
+<p>Esto era Java alrededor de 1996, hace catorce años, es decir, una eternidad en el mundo de la informática.</p>
+
+<p>Hoy día las cosas han cambiado mucho. En primer lugar, la propia máquina virtual de Java (la JVM) ha evolucionado pasmosamente hasta convertirse en una pieza de software altamente optimizada.</p>
+
+<p>La máquina virtual de Java cuenta hoy en día con compiladores JIT (Just In Time) que traducen el bytecode a código nativo de la máquina. Además, la JVM también puede monitorizar qué partes del programa se ejecutan más a menudo y optimizar la compilación para el uso real que se le da a la aplicación. Es lo que se conoce como Optimización Adaptativa, y es una ventaja muy importante con la que no cuentan los compiladores tradicionales.</p>
+
+<p>Esas son las dos principales mejoras de las que se ha beneficiado la máquina virtual de Java, <a href="http://en.wikipedia.org/wiki/Java_performance#Virtual_machine_optimization_techniques">pero no las únicas</a>.</p>
+
+<p>El resultado de todos estos cambios, es que Java, a día de hoy es tan rápido o más que C++. Dependiendo de quién haga el benchmark, Java resulta ser un poco más rápido o un poco más lento.</p>
+
+<p>Por ejemplo, el <a href="http://shootout.alioth.debian.org/u32/which-programming-languages-are-fastest.php">The Computer Language Benchmarks Game </a>es un juego de benchmarks basados en pruebas de cálculo aritmético sencillas donde se comparan distintos lenguajes. En esas pruebas Java, cuando descontamos el tiempo de arranque de la máquina virtual, aparece en los primeros puestos, sólo por detrás de C, C++ y ATS, sacando bastante ventaja a otros lenguajes como C# y barriendo literalmente a los lenguajes dinámicos como Ruby, Python o PHP. Java resulta ser unas 80 veces más rápido que PHP.</p>
+
+<p>No obstante, los benchamarks que miden calculos aritméticos sencillos no se correlacionan demasiado bien con el rendimiento de sistemas complejos, donde la interacción entre distintas partes de la aplicación, las librerías de E/S, o la concurrencia son muy importantes. En benchmarks donde se comparan sistemas complejos, Java se muestra a menudo más rápido que C++. Por ejemplo, algunos <a href="http://www.devshed.com/c/a/BrainDump/Tomcat-Benchmark-Procedure/1/">benchmarks indican que el servidor web Apache Tomcat (escrito en Java) puede ser más rápido que su primo Apache httpd</a> (escrito en C).</p>
+
+<p>Pero todo esto tiene una importancia relativa, porque el mayor cambio que ha habido en el mundo de Java no ha sucedido dentro de la plataforma, sino fuera de ella. <strong>Los principales rivales de Java para crear aplicaciones web ya no son C y C++ sino, más bien, PHP, Ruby o Python</strong>. Y Java es mucho más rápido que cualquiera de estas tres alternativas. Y lo que es peor: tampoco importa. Ruby, por ejemplo, es lo suficientemente rápido para hacer aplicaciones web con un buen rendimiento. <a href="http://codigocomestible.com/2010/03/28/mitos-escalabilidad-aplicaciones-web/">Como ya he explicado en otra ocasión, el hecho de que Ruby sea más lento que Java no lo hace menos escalable</a>.</p>
+
+<p>Pero, me diréis, "<em>existen muchas aplicaciones en Java leeeentas y pesadas, yo las he visto. Fíjate en Eclipse, me puedo tomar un café mientras arranca.</em>" Y es cierto. Pero eso no es culpa de la plataforma Java, sino de los programadores que crearon esos engendros. Durante muchos años, J2EE (el entorno en el que se han desarrollado la mayoría de las aplicaciones Java empresariales) ha sido una plataforma sobrecargada de ornamentos inútiles y pesados. No es de extrañar que una aplicación que usa los EJB 2.0 distribuidos vaya lenta. Pero el fallo está en utilizar EJBs distribuidos, no en el lenguaje de programación ni en la máquina virtual.</p>
+
+<p>Y eso nos lleva a la verdadera razón de por qué ha sobrevivido tanto tiempo la monserga de que Java es lento: es una excusa perfecta para hacer software malo. Los desarrolladores pueden hacer un truño de aplicación, y cuando no funcione bien se encogerán de hombros y dirán: '<em>qué quieres, no es culpa mía, ya sabes que Java es lento</em>'.</p>
+
+
+    <div id="share">
+      <ul id="social-links">
+  <li>
+      <a target="_blank" rel="nofollow" data-url="" data-text="" class="socialite twitter-share" href="http://twitter.com/share">
+          <span class="vhidden">Share on Twitter</span>
+      </a>
+  </li>
+  <li>
+      <a target="_blank" rel="nofollow" data-href="" class="socialite googleplus-one" href="https://plusone.google.com/_/+1/confirm?hl=en&amp;url=" data-annotation="none">
+        <span class="vhidden">Share on Google+</span>
+      </a>
+  </li>
+  <li>
+      <a target="_blank" rel="nofollow" data-show-faces="false" data-width="60" data-send="false" data-href="" class="socialite facebook-like" href="http://www.facebook.com/sharer.php?u=">
+          <span class="vhidden">Share on Facebook</span>
+      </a>
+  </li>
+</ul>
+
+<script type="text/javascript">
+  $(function(){
+    Socialite.load('#share');
+  })
+</script>
+
+    </div>
+
+    <section id="comments">
+      <h3>Comments</h3>
+      <div id="disqus_thread" aria-live="polite"><div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'codigocomestible'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+    </section>
+  </div>
+</article>
+      </section>
+      <aside id="sidebar" class="offset1 span3">
+        <nav role="navigation">
+  <ul class="main-navigation">
+    <form action="http://google.es/search" method="get" class="form-search">
+      <fieldset role="search">
+        <input type="hidden" name="sitesearch" value="codigocomestible.com" />
+        <input class="search" type="text" name="q" results="0" placeholder="buscar"/>
+      </fieldset>
+    </form>
+    <li>
+      <a href="/atom.xml">
+        Feed RSS
+      </a>
+    </li>
+    <li><a href="/archives">Archivo</a></li>
+  </ul>
+</nav>
+
+<section>
+  <h4>Artículos recientes</h4>
+  <ul id="recent_posts">
+    
+    <li class="post">
+      <a href="/2011/01/24/flujo-la-psicologia-de-la-experiencia-optima/">Flujo, la psicología de la experiencia óptima</a>
+    </li>
+    
+    <li class="post">
+      <a href="/2010/09/24/100-de-cobertura-del-codigo/">100% de cobertura del código</a>
+    </li>
+    
+    <li class="post">
+      <a href="/2010/07/07/software-con-opinion/">Software con opinión</a>
+    </li>
+    
+    <li class="post">
+      <a href="/2010/07/06/paralisis-por-analisis/">Parálisis por análisis</a>
+    </li>
+    
+    <li class="post">
+      <a href="/2010/07/06/fuerza-de-voluntad-recurso-finito/">La fuerza de voluntad es un recurso finito</a>
+    </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h4>Dónde puedes encontrarme</h4>
+
+  <ul>
+    <li>
+      <a href="mailto: afcapel at gmail dot com">
+        <img src="/images/email_32.png" width="32" height="32"/>
+        E-mail
+      </a>
+    </li>
+
+   <li>
+    <a href="http://twitter.com/afcapel">
+      <img src="/images/twitter_32.png" width="32" height="32"/>
+      Twitter
+    </a>
+   </li>
+
+   <li>
+    <a href="http://github.com/afcapel">
+      <img src="/images/github_32.png" width="32" height="32"/>
+      Github
+    </a>
+   </li>
+
+  <li>
+    <a href="https://plus.google.com/107729440292621307525?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32"/>
+      Google+
+    </a>
+  </li>
+</ul>
+</section>
+      </aside>
+    </div>
+
+
+    <footer role="contentinfo" id="main-footer">
+      <p>Copyright &copy; 2013 - Alberto Fernández-Capel</p>
+    </footer>
+  </div>
+
+  <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35983929-1']);
+  _gaq.push(['_setDomainName', 'codigocomestible.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</body>
+</html>

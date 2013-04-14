@@ -20,7 +20,7 @@ Las métricas que se obtienen en un entorno de integración continua son muy út
 
 Por ejemplo, la métrica más usada, por su utilidad, es el tanto por ciento de cobertura del código: el tanto por ciento de código que se ejecuta al lanzar los test. El problema con esta métrica es que se puede falsear trivialmente como demuestra el siguiente ejemplo:
 
-```ruby
+{% highlight ruby %}
 class Sumador
   def self.suma(op1, op2)
     return op1 - op2 #  Estamos restando, no sumando!
@@ -33,7 +33,7 @@ class TestSuma < Test::Unit::TestCase
     assert(true)
   end
 end
-```
+{% endhighlight %}
 
 Esta es una implementación rota de una clase para sumar - que, en realidad, resta- y que sin embargo tiene un 100% de cobertura de código.
 

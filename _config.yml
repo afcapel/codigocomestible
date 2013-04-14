@@ -1,11 +1,11 @@
 root: /
 safe: true
+pygments: true
 permalink: /:year/:month/:day/:title/
 markdown: rdiscount
-pygments: true
 server_port: 4000
 baseurl:    /
-url: http://localhost:4000
+url: http://codigocomestible.com
 paginate: 5
 recent_posts: 5
-exclude: ["_sass", Rakefile", "config.rb", "config.ru"]
+exclude: ["_sass", "Rakefile", "config.rb", "config.ru"]

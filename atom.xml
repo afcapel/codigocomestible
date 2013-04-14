@@ -4,7 +4,7 @@
   <title><![CDATA[]]></title>
   <link href="http://codigocomestible.com/atom.xml" rel="self"/>
   <link href="http://codigocomestible.com/"/>
-  <updated>2013-04-14T13:06:01+02:00</updated>
+  <updated>2013-04-14T22:10:25+02:00</updated>
   <id>http://codigocomestible.com/</id>
   <author>
     <name><![CDATA[]]></name>
@@ -54,7 +54,21 @@
 
 <p>Por ejemplo, la métrica más usada, por su utilidad, es el tanto por ciento de cobertura del código: el tanto por ciento de código que se ejecuta al lanzar los test. El problema con esta métrica es que se puede falsear trivialmente como demuestra el siguiente ejemplo:</p>
 
-<p>Liquid error: No such file or directory - posix_spawnp</p>
+<div class="highlight"><pre><code class="ruby"><span class="k">class</span> <span class="nc">Sumador</span>
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">suma</span><span class="p">(</span><span class="n">op1</span><span class="p">,</span> <span class="n">op2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">op1</span> <span class="o">-</span> <span class="n">op2</span> <span class="c1">#  Estamos restando, no sumando!</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">TestSuma</span> <span class="o">&lt;</span> <span class="ss">Test</span><span class="p">:</span><span class="ss">:Unit</span><span class="o">::</span><span class="no">TestCase</span>
+  <span class="k">def</span> <span class="nf">test_suma</span>
+    <span class="no">Sumador</span><span class="o">.</span><span class="n">suma</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span>
+    <span class="n">assert</span><span class="p">(</span><span class="kp">true</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
 
 <p>Esta es una implementación rota de una clase para sumar - que, en realidad, resta- y que sin embargo tiene un 100% de cobertura de código.</p>
 

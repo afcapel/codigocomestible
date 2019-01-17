@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="author" content="Alberto Fernández-Capel">
+
+  
+  <meta name="description" content="
+  
+  
+  
+    
+  
+    
+  
+
+  
+    
+      Mitos sobre la escalabilidad de aplicaciones web
+    
+
+    Cómo escalar una aplicación web es el debate má...">
+  
+
+  <link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700|Open+Sans' rel='stylesheet' type='text/css'>
+  <link href="/stylesheets/comestible.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+  <script src="/javascripts/socialite.min.js"></script>
+  <link href="" rel="alternate" title="" type="application/atom+xml">
+</head>
+<body>
+  <div class="container">
+    <header role="banner" id="main-header" class="row">
+      <hgroup>
+        <h1 id="blog-title" class="span3 offset1"><a href="//">Código Comestible</a></h1>
+        <h2 id="blog-subtitle" class="span6">"La belleza será comestible o no será" <br/> - Salvador Dalí</h2>
+      </hgroup>
+    </header>
+
+    <div class="row">
+      <section id="main" class="span8">
+        <div id="blog-index" class="row">
+  
+  
+  
+    <article class="entry" role="article">
+  <div class="meta span1">
+    <time class="date" datetime="" pubdate></time>
+  </div>
+
+  <div class="content span7">
+    
+      <h1 class="entry-title"><a href="/2010/03/28/mitos-escalabilidad-aplicaciones-web/">Mitos sobre la escalabilidad de aplicaciones web</a></h1>
+    
+
+    <p>Cómo escalar una aplicación web es el debate más cansino y poco productivo que hay en el mundo de la informática. Es cansino porque se suele discutir con argumentos muy peregrinos y confundiendo los conceptos más básicos.</p>
+
+<p>No suele suceder que alguien diga: "he hecho unas pruebas de estrés y he visto que para una concurrencia de 300.000 usuarios haciendo unas 5.000 peticiones por segundo las queries a las tablas de usuarios y productos dan un 85% de fallos. ¿Qué tal si denormalizamos tal campo, añadimos este índice y cacheamos estas peticiones?" No, eso que sería algo concreto, productivo y acertado. En vez de eso, lo que se oye más a menudo son argumentos como: "no podemos desarrollar la aplicación en Ruby (o Java, o lo que sea) porque Ruby (o Java o lo que sea) es lento y no puede escalar. Utilicemos mejor X", dónde X puede ser cualquier tecnología desde PHP (extrañamente, en la imaginación popular PHP es más rápido que Java) hasta C, ensamblador o html estático. Cuanto más obsoleta esté la tecnología, mejor.</p>
+
+<p>Si alguien os suelta algo así, tened claro que vuestro interlocutor no tiene idea de lo que habla y os hará falta mucha pedagogía para intentar convencerlo de lo contrario. El primer paso es concretar qué significa exactamente escalabilidad.</p>
+
+<h3>Definición de escalabilidad</h3>
+
+<p>Para que un sistema sea escalable tiene que cumplir tres condiciones:</p>
+
+<ol>
+<li><p>Tiene que poder adaptarse a un incremento en el número de usuarios.</p></li>
+<li><p>Tiene que poder adaptarse a un incremento en el tamaño de los datos que maneja.</p></li>
+<li><p>Tiene que ser mantenible.</p></li>
+</ol>
+
+
+<p>Cuanto más fácil sea cumplir estas tres condiciones, más escalable será el sistema.</p>
+
+<p>Y ahora, llegamos al punto que más confusión crea al hablar de escalabilidad: <strong>la escalabilidad no es lo mismo que el rendimiento  del sistema</strong>. El rendimiento (performance) de la aplicación se define como la velocidad a la que procesa las peticiones. Pues bien, en general se puede mejorar fácilmente el rendimiento de las aplicaciones que son escalables, pero lo contrario no es cierto: <strong>una aplicación puede rendir muy bien pero no ser escalable</strong>.</p>
+
+<p>Para entender este punto concretemos con un par de ejemplos.</p>
+
+<p>Primero, imaginemos el siguiente servlet:</p>
+
+<p>```java
+public void doGet (HttpServletRequest request, HttpServletResponse response)
+  throws ServletException, IOException {</p>
+
+<pre><code>Thread.sleep(4000); //Nos echamos una siesta antes de responder
+PrintWriter out = response.getWriter();
+out.println("Hello, world, I'm a slow but scalable servlet");
+out.close();
+</code></pre>
+
+<p>}
+```</p>
+
+<p>Esta aplicación tiene un rendimiento muy malo: tarda 4 segundos en procesar una petición en la que literalmente no hace nada. Sin embargo, es una aplicación escalable según el criterio que usamos anteriormente: la aplicación no maneja datos por lo que eso no puede ser un problema. Y el mantenimiento de 7 líneas de código no debería ser una pesadilla. Por último, la aplicación puede atender a un número indefinido de usuarios simplemente añadiendo más máquinas. Si una máquina puede atender 1.000 usuarios, al añadir una segunda máquina se prodría atender a 2.000, por lo que se dice que tiene una escalabilidad lineal. La escalabilidad lineal es la mejor que se puede conseguir en sistemas grandes.</p>
+
+<p>Ahora, en cambio, imaginemos una aplicación web con un alto rendimiento en el que el tiempo de respuesta medio es de 40ms, lo cual está francamente bien. No obstante, la aplicación guarda su estado en memoria de forma que cuando aumenta el tráfico del sitio no podemos simplemente añadir otra máquina al sistema porque los cambios aplicados a un nodo no se propagarán a otro. Esta aplicación tiene muy buen rendimiento pero no es escalable según nuestra definición.</p>
+
+<p>Entonces, si el rendimiento no es el factor crucial que determina la escalabilidad, ¿qué hace escalable a una aplicación web? ¿Cuales son las estrategias más sencillas para escalar una aplicación web? Por los ejemplos anteriores ya podemos intuir que <strong>la escalabilidad depende más del diseño de la aplicación que de las tecnologías usadas para implementarla</strong>.</p>
+
+<h3>Escalabilidad horizontal y escalabilidad vertical</h3>
+
+<p>La estrategia más sencilla para escalar una aplicación web es simplemente comprar hardware mejor y más caro. Si nuestro hardware actual puede servir 100 peticiones por segundo, cuando alcancemos ese límite podemos actualizar la máquina a una con más potencia y así servir más peticiones. Esto se conoce como <strong>escalabilidad vertical</strong>.</p>
+
+<p>La sabiduría popular nos dice que la escalabilidad vertical tiene un límite: llegados a cierto punto, simplemente no hay máquinas más caras, por lo que no se puede seguir escalando verticalmente. Además, el precio de las máquinas suele aumentar exponencialmente con su potencia, por lo que la escalabilidad vertical suele ser una opción cara.</p>
+
+<p>La ventaja de la escalabilidad vertical es su sencillez: no hay que hacer ningún cambio en la aplicación, simplemente gastarse el dinero en una máquina más grande. Y, además, la escalabilidad vertical cuenta con la ayuda de <a href="http://en.wikipedia.org/wiki/Moore's_law">la ley de Moore</a>: para un precio fijo, la máquina que puedes comprar será cada año más potente. Si con tus máquinas actuales puedes dar servicio a 50.000 usuarios y no planeas superar este límite hasta dentro de al menos un par de años, puedes limitarte a esperar con lo que tienes. Cuando pasen los dos años puedes comprar máquinas más potentes por el mismo precio que te costaron las que tienes ahora.</p>
+
+<p>Aunque parezca una estrategia demasiado sencilla para dar resultado, lo cierto es que puede funcionar muy bien. Los chicos de 37 Signals, que siempre se distinguen por encontrar soluciones sencillas a los problemas complejos, <a href="http://37signals.com/svn/posts/1509-mr-moore-gets-to-punt-on-sharding">la emplean satisfactoriamente para escalar su base de datos</a>.</p>
+
+<p>Para aplicaciones realmente muy grandes, sin embargo, la escalabilidad vertical no es una opción, por lo que los gigantes de la web como Facebook, Google o Flickr, se decantan principalmente por la escalabilidad horizontal. <strong>La escalabilidad horizontal consiste en añadir más máquinas a la aplicación</strong>, aumentando su número aunque no necesariamente su potencia.</p>
+
+<p>El mejor ejemplo de este paradigma es <a href="http://static.googleusercontent.com/external_content/untrusted_dlcp/labs.google.com/en//papers/googlecluster-ieee.pdf">la arquitectura de Google</a>. La plataforma en la que corre el famoso buscador está compuesta de decenas de miles de máquinas de hardware utilitario. Entre tanto hardware barato es normal que cada día decenas de máquinas dejen de funcionar por problemas de hardware, pero eso no supone un problema grave: el sistema es capaz de redirigir automáticamente  el tráfico de un nodo caído a los nodos sanos y seguir funcionando como si tal cosa. Para aumentar su capacidad, Google sólo tiene que comprar más máquinas y ponerlas a funcionar.</p>
+
+<p>Viendo como funciona Google, la escalabilidad horizontal parece no tener límites, pero ¿qué características debe tener una aplicación para poder escalar horizontalmente?</p>
+
+<h3>Arquitectura shared nothing</h3>
+
+<p>Para que las aplicaciones puedan escalar horizontalmente se suele utilizar <a href="http://en.wikipedia.org/wiki/Shared_nothing_architecture">una arquitectura shared nothing</a>. En una arquitectura shared nothing cada uno de los nodos de la aplicación son independientes, autocontenidos y autosuficientes. Como cada nodo puede trabajar por sí solo sin depender de sistemas externos, al aumentar la demanda se pueden añadir tantos nodos nuevos como sean necesarios para cubrirla. Gracias a los servicios en la nube como Amazon EC2 o el Google App Engine el coste de añadir nuevos nodos es cada vez más bajo. Simplemente se crea una imagen del disco duro del sistema con la aplicación y se programa para que arranque automáticamente. Si la afluencia de público aumenta considerablemente se pueden arrancar nuevas instancias para cubrir la demanda.</p>
+
+<p>Una característica importante de la arquitectura shared nothing es que el estado de la aplicación no se guarda en los nodos individuales sino que es compartida por todo el sistema. De esta forma, si algún nodo falla no se pierde información y el sistema puede seguir funcionando. Esta es la estrategia que usa Google para tener una plataforma de proporciones titánicas.</p>
+
+<h3>Capa de persistencia y NoSQL</h3>
+
+<p>Las aplicaciones web bien diseñadas suelen tener una arquitectura <em>casi</em> shared nothing. Simplificando, algo parecido a esto:</p>
+
+<p><img src="http://codigocomestible.files.wordpress.com/2010/03/arquitectura.png" alt="Arquitectura de una aplicación web sencilla" /></p>
+
+<p>Si los nodos no guardan ningún estado propio, la capa de aplicación de esta arquitectura se puede escalar horizontalmente de forma trivial: sólo hay que añadir más apaches o servidores de aplicación. ¿Pero qué pasa con la base de datos?</p>
+
+<p>La base datos es el punto compartido por todo el sistema, la única parte que se aleja de una arquitectura shared nothing y, por lo tanto, suele ser el principal punto de contención de una aplicación web y la parte más difícil de escalar. Eso no quiere decir que no existan técnicas para escalar una base de datos, las hay y muy eficientes como el sharding o la replicación. Sitios como Flickr o eBay funcionan perfectamente con sus bases de datos MySQL y si a Flickr se basta con MySQL, eso quiere decir que MySQL se puede escalar muchíiiisismo.</p>
+
+<p>Otros gigantes de la Web, sin embargo, no han tenido tanta paciencia con los problemas de escalabilidad de las bases de datos tradicionales. El primero en romper el molde con un diseño innovador fue <a href="http://static.googleusercontent.com/external_content/untrusted_dlcp/labs.google.com/en//papers/bigtable-osdi06.pdf">Google con su BigTable</a>. Le han seguido otros como <a href="http://www.allthingsdistributed.com/2007/10/amazons_dynamo.html">Amazon con su Dynamo</a>, o <a href="http://www.facebook.com/note.php?note_id=24413138919&amp;id=9445547199&amp;index=9">Facebook con Cassandra</a>.
+Todos estos proyectos se caracterizan por abandonar la tradicional base de datos basada en SQL en favor de un diseño de base de datos distribuida de alta escalabilidad.</p>
+
+<p>Hasta hace unos años, sólo las empresas como Google con una capacidad de desarrollo e investigación bestiales podían permitirse el lujo de desarrollar una base de datos no relacional. Sin embargo, hoy día, hay cada vez más bases de datos no relacionales al alcance del usuario final. Entre las opciones Open Source tenemos, por ejemplo, Cassandra, MongoDB, CouchDB, Project Voldemort, Redis, etc. Estos proyectos han nacido en los últimos años  y se agrupan en lo que se conoce como <a href="http://www.computerworld.com/s/article/9135086/No_to_SQL_Anti_database_movement_gains_steam_">el movimiento NoSQL</a>. Las bases de datos NoSQL <a href="http://www.mongodb.org/display/DOCS/Production+Deployments">ya se pueden usar en proyectos grandes y pequeños sin demasiada complicación</a> y en el futuro prometen ser la respuesta a los problemas de escalabilidad de la capa de persistencia en aplicaciones web.</p>
+
+<h3>Para qué sirve toda esta información</h3>
+
+<p>Todo este rollo sobre escalabilidad puede parecer más complejo de lo que es. En realidad, creo que con tener unos conceptos básicos es suficiente, aunque si quieres aprender el tema en profundidad, te recomiendo encarecidamente que leas<a href="http://oreilly.com/catalog/9780596102357"> <em>Building Scalable Web Sites</em> de Cal Henderson</a>. Cal Henderson ha sido el ingeniero encargado de escalar la plataforma de Flickr, así que ten por seguro que habla con conocimiento de causa. La mayoría de los conceptos de este artículo están sacados de ese libro. Otra fuente de información muy interesante, con multitud de ejemplos prácticos, es <a href="http://highscalability.com/">el sitio web High Scalability</a>.</p>
+
+<p>Recordemos también que, según nuestra definición, <strong>para que una aplicación escale debe ser mantenible</strong> y, <strong>en la inmensa mayoría de los casos lo que suele hacer a las aplicaciones inmantenibles son los malos diseños y el código mal escrito</strong>, no las avalanchas de usuarios. Un buen diseño es la mejor garantía de que tu aplicación podrá escalar bien, no el que utilices C o ensamblador para procesar las peticiones.</p>
+
+<p>Sobre todo, espero que este artículo sirva para que te puedas ahorrar alguna de esas discusiones sobre escalabilidad tan poco productivas. Ten en cuenta, que siempre es mejor no optimizar antes de tiempo. Primero <a href="http://gettingreal.37signals.com/ch04_Scale_Later.php">céntrate en hacer una aplicación que funcione y sea sencilla y elegante</a>. Siguiendo algunas pautas sencillas como hacer que cada nodo sea autocontenido e independiente de los demás no va a haber ningún problema grave.</p>
+
+<p>Una vez la aplicación esté construida y funcione bien, entonces, si quieres mejorar el rendimiento (que no la escalabilidad) haz pruebas de estrés y busca los verdaderos cuellos de botella de la aplicación. Seguramente te sorprendan. Luego, teniendo datos reales de qué hace la aplicación y qué operaciones son más costosas, <em>entonces</em>, puedes dedicarte a mejorar estos puntos concretos.</p>
+
+<p>Como escribió Donald Knuth:</p>
+
+<blockquote>
+Los programadores desperdician enormes cantidades de tiempo preocupándose por la velocidad de partes de sus programas, y esos intentos de ser eficientes en realidad tienen un impacto muy negativo en el mantenimiento y la depuración del software. Deberíamos olvidarnos de las pequeñas eficiencias, digamos el 97% del tiempo: la optimización prematura es la raíz de todos los males.
+</blockquote>
+
+
+  </div>
+</article>
+
+
+  
+  
+    <article class="entry" role="article">
+  <div class="meta span1">
+    <time class="date" datetime="" pubdate></time>
+  </div>
+
+  <div class="content span7">
+    
+      <h1 class="entry-title"><a href="/2010/03/26/como-se-complica-el-software/">Cómo se complica el software</a></h1>
+    
+
+    <p>Cuando se inicia el diseño de una aplicación los desarrolladores siempre piensan que todo saldrá bien. En la imaginación del desarrollador el sistema es claro y sencillo, cada pieza encaja en su sitio y todo funciona como una máquina perfectamente engranada.</p>
+
+<p>Sin embargo, el software lioso y mal diseñado, en el que todo es más complicado de lo que debería, también existe. ¡Y tanto qué existe!  Cualquier desarrollador conoce al menos una aplicación compleja y confusa, un verdadero lío inmantenible. En cambio, lo contrario es una rareza desconocida: una aplicación que peque de ser más sencilla de lo que debería. ¿Quién ha visto algo así?</p>
+
+<p>Si los desarrolladores de software aspiran a la sencillez, ¿qué es lo que acaba convirtiendo al software en un embrollo pegajoso y sucio? ¿Qué pasa durante el proceso de desarrollo de software para que el hermoso y sencillo diseño inicial acabe convertido en un nudo gordiano? ¿Cuales son los pasos que desencadenan la catástrofe?</p>
+
+<p>Para entenderlo, podemos fijarnos en otros campos donde la calidad del producto se degrada imperceptiblemente.</p>
+
+<p>Imaginemos, por ejemplo, una empresa de reparto a domicilio de pizzas. La empresa hace unas pizzas de muy buena calidad que gustan al público y aumenta cada año sus beneficios hasta que toca un techo que es difícil superar (simplemente, porque la mayoría de sus clientes potenciales ya están comprando el producto). Entonces puede surgir algún ejecutivo listillo -y <strong>siempre</strong> aparecerá un ejecutivo listillo- que, armado de gráficos con colores llamativos y de un powerpoint con muchos puntos con bolitas, exponga algo como lo siguiente:</p>
+
+<p><em>"Hemos hecho un estudio de mercado y hemos comprobado que podemos hacer las pizzas medio centímetro más pequeñas sin que los consumidores noten nada. Como nuestra empresa vende tropecientos millones de pizzas al año, el ahorro en los materias primas y costes de producción nos puede generar unos beneficios de un porrón y medio de millones al año".</em></p>
+
+<p>Y el ejecutivo listillo puede que tenga razón: una diferencia de medio centímetro no es nada tan grave como para que el consumidor deje de comprar la pizza. Sin embargo, al seguir este camino se abre un precedente peligroso: dentro de unos meses, otro ejecutivo listillo, celoso del primer ejecutivo listillo, propondrá utilizar un queso más barato y así ahorrar otro puñado de millones. También se pueden abaratar los precios de cada uno de los demás ingredientes, y reducir el tiempo que se tarda en hacer una pizza, simplemente amasando menos la masa; ahorrar un poco más en las condiciones laborales de los trabajadores, aunque eso haga que estén menos contentos y rindan menos y trabajen peor. Y unos meses más tarde se le puede quitar otro centímetro al tamaño de la pizza.</p>
+
+<p>Son cambios pequeños que, por separado, no tendrían demasiada repercusión en la calidad de la pizza. Pero <strong>si los juntamos todos</strong>, al final obtenemos una verdadera porquería de pizza. <strong>Pequeños cambios que individualmente no son importantes, al sumarse pueden crear una gran diferencia</strong>.</p>
+
+<p>Con el desarrollo de software ocurre lo mismo. Nadie quiere hacer un sistema complicado, pero invariablemente el desarrollador quiere mejorar su programa y va introduciendo pequeñas complejidades en el código. Un poquito aquí y un poquito allá. Al fin y al cabo, no son cosas tan complejas, se dice, no pueden hacer demasiado daño. <strong>Pero sumando docenas de pequeñas complejidades se puede obtener un sistema muy complicado</strong>. Y una vez que el sistema se ha complicado, volver atrás y simplificarlo es mucho más difícil de lo que hubiera sido hacerlo sencillo desde el principio.</p>
+
+<p>La única manera de evitar que el software acabe siendo un lío monumental es siendo muy exigente con cualquier cosa que complique el código. <a href="http://gettingreal.37signals.com/ch10_Less_Software.php">¿Realmente necesita el programa esta funcionalidad?</a> Un error al que tenemos tendencia los desarrolladores es solucionar problemas que no existen. Hacer un software que podría resolver casos muy generales, que en teoría podrían presentarse, pero que en la práctica nunca se presentan. Y, sin embargo, <a href="http://blogs.oreilly.com/digitalmedia/2002/11/martin-fowler-on-flexibility-a.html">todo este código que resuelve casos imaginarios tiene un coste en complejidad</a>.</p>
+
+<p>El consejo más sencillo que se puede seguir al respecto es centrarse siempre en resolver problemas reales.  Como se suele decir:
+<em>no code is simpler than no code.</em></p>
+
+  </div>
+</article>
+
+
+  
+  
+    <article class="entry" role="article">
+  <div class="meta span1">
+    <time class="date" datetime="" pubdate></time>
+  </div>
+
+  <div class="content span7">
+    
+      <h1 class="entry-title"><a href="/2010/02/23/presentacion-de-wasamblea-org/">Presentación de Wasamblea.org</a></h1>
+    
+
+    <p>¿Qué opinan los ciudadanos acerca de la Ley del Aborto, de cadena perpetua, de las ayudas a la banca que estos mismos ciudadanos tienen que pagar, de la reforma del sistema de pensiones, o de la Ley Electoral?</p>
+
+<p>Si creemos que nuestro sistema funciona razonablemente bien, podemos averiguarlo viendo lo que sucede en el Parlamento cada vez que se discuten estas cuestiones. En teoría, los ciudadanos eligen cada cuatro años a diputados y senadores para que los representen en las Cortes. El trabajo de estos parlamentarios <strong>es representar al pueblo soberano que los ha elegido y cumplir su voluntad libremente expresada en las urnas</strong>. En teoría, lo que sucede en las Cortes debería ser un fiel reflejo de la voluntad de los ciudadanos que deambulan por las calles.</p>
+
+<p>Esto es la teoría. En la práctica los ciudadanos percibimos que la situación es muy diferente. Sentimos cada vez más desconfianza de la clase política, hasta el punto de <a href="http://codigocomestible.com/2009/12/29/los-politicos-son-un-problema-muy-grave/">considerarla uno de los problemas más graves que hay en España</a>. No nos sentimos fielmente representados por nuestros políticos. Vemos como políticos mandan y a los ciudadanos nos toca obedecer, cuando, en un sistema democrático debería ser justo al revés. El pueblo es soberano, los ciudadanos somos los que mandamos, y a los políticos les toca el trabajo de representar esa voluntad soberana.</p>
+
+<p>Nuestro sistema político funciona tan mal que no respeta ni los mismos principios en los que se sostiene. ¿Y qué podemos hacer nosotros?</p>
+
+<p>De estas cuestiones surgió la idea de <a href="http://wasamblea.org">Wasamblea.org</a>. <strong>Wasamblea es un Parlamento Virtual donde los ciudadanos pueden proponer, discutir y votar cualquier medida.</strong> Espero que Wasamblea llegue a reflejar fielmente de la voluntad de los ciudadanos. Así si, por poner un ejemplo hipotético, las Cortes aprueban una Ley de Economía Sostenible que facilita el cierre de páginas web sin ninguna intervención judicial, al menos sabremos que no se trata de una decisión verdaderamente democrática, sino de una imposición más de nuestra clase política.</p>
+
+<p><a href="http://wasamblea.org">Wasamblea.org</a> queda abierto a partir de hoy para el público en general. El sistema está recién salido del horno, por lo que puede que haya algunas cosas que no funcionan todavía. Algunas funcionalidades se han quedado para más adelante. (Los informáticos usamos esta excusa tan a menudo que le hemos puesto un nombre: Wasamblea está aún en <em>fase Beta</em>).</p>
+
+<p>Espero que con la colaboración de todos podamos ir mejorando hasta hacerlo un sitio en el que cualquier demócrata se sienta representado, que los ciudadanos se hagan oír y que los políticos sepan escuchar. Que sea un pequeño pasito para hacer más democrático el mundo.</p>
+
+<p>Señores, <a href="http://wasamblea.org">pasen y vean</a>. ¡Espero que les guste!</p>
+
+  </div>
+</article>
+
+
+  
+  
+    <article class="entry" role="article">
+  <div class="meta span1">
+    <time class="date" datetime="" pubdate></time>
+  </div>
+
+  <div class="content span7">
+    
+      <h1 class="entry-title"><a href="/2010/02/11/obstaculos-democracia-directa-i/">Los obstáculos de la Democracia Directa I</a></h1>
+    
+
+    <p>Cuando se  habla de democracia directa, <a href="http://www.meneame.net/story/ha-llegado-momento-democracia-directa">enseguida surge alguien para recordar por qué una democracia directa nunca, nunca, será posible. </a></p>
+
+<p>Puede que las críticas más recurrentes sean estas:</p>
+
+<ol>
+<li>La gente <a href="http://www.meneame.net/story/ha-llegado-momento-democracia-directa#c-4">es demasiado estúpida o ignorante</a> para gobernarse a sí misma.</li>
+<li>Un sistema de democracia directa digital no sería fiable porque internet, y la tecnología en general, facilitarían el fraude. </li>
+<li>Utilizar nuevas tecnologías en los procesos democráticos sería discriminatorio contra todas aquellas personas que no saben o no pueden utilizarlas.</li>
+</ol>
+
+
+<p>Entiendo estas críticas y creo que pueden tener algún fundamento, pero no creo que sean escollos insalvables. La situación me recuerda a lo que ocurrió con la Wikipedia. ¿Quién se puede creer que unos usuarios anónimos trabajando altruistamente puedan crear una enciclopedia que rivalice e incluso supere a la mismísima <em>Enciclopedia Britannica</em>? Es una idea tan loca, que de no estar ahí la Wikipedia, vivita y coleando al alcance de dos clicks, sería increíble. Desde su nacimiento <a href="http://arstechnica.com/tech-policy/news/2009/09/despite-changes-wikipedia-will-still-fail-within-5-years.ars">muchos agoreros</a> predijeron que la Wikipedia fallaría miserablemente en unos pocos años.</p>
+
+<p>Sin duda, una empresa como la Wikipedia ha tenido que superar muchos obstáculos. Si cualquiera puede editar una entrada, ¿qué impedirá que algún vándalo introduzca información falsa o manipule la que ya existe con algún oscuro interés, o simplemente <a href="http://www.irishtimes.com/newspaper/ireland/2009/0506/1224245992919.html">por puro cachondeo</a>?. Ese es un problema que aún tiene la Wikipedia, pero aún así, los problemas son las excepciones, no la norma, y el contenido correcto de la Enciclopedia Libre es infinitamente mayor, y compensa con creces errores puntuales.</p>
+
+<p>Además, la Wikipedia ha ido desarrollando con el tiempo mecanismos de control para paliar sus debilidades. A pesar de problemas y agorereos, la Wikipedia se mueve.</p>
+
+<p>Los problemas a los que se enfrenta una democracia directa también parecen bastante serios, así que tendremos que analizar si son escollos insalvables, o meras dificultades a las que habrá que buscar una solución.</p>
+
+<p>La primera cuestión -el pueblo es demasiado estúpido e ignorante para gobernarse a sí mismo- <strong>no es una crítica a la democracia directa en particular, sino a la misma esencia de la Democracia.</strong> Democracia no significa el derecho a meter una papeleta en una urna cada cuatro años; <strong>la democracia es el Gobierno del Pueblo</strong>.</p>
+
+<p>Esta idea no es nada nueva sino que, más bien, es tan antigua como la misma democracia. Los propios filósofos griegos, en general, no eran demasiado partidarios de la democracia. Platón, en su libro <em>La República</em> desdeña la democracia, que considera demasiado propensa a caer en la demagogia y postula, en cambio, un sistema  en el que gobiernen los mejores -la <em>aristocracia</em>- asombrosamente parecido a los regímenes totalitarios que hemos visto en el siglo XX y que sólo han traído miseria y esclavitud a la humanidad.</p>
+
+<p>Aritóteles, por su parte, dejó escrito:</p>
+
+<blockquote>
+  Cuanto más democrática se vuelve una democracia, más tiende a ser gobernada por la plebe, degenerando en tiranía.
+</blockquote>
+
+
+<p>A pesar de todo, la democracia continúa moviéndose, expandiéndose cada vez por más sitios, como <a href="http://www.europapress.es/salud/noticia-oms-niega-connivencias-indebidas-farmaceuticas-gripe-20100126163804.html">una pandemia de leve dolor de cabeza</a>.  Han pasado muchos siglos desde la antigua Grecia y han ido apareciendo y desapareciendo en la faz de la tierra formas de gobierno de toda índole. Y una cosa parece clara: ninguna forma de gobierno garantiza mayor prosperidad y libertad que un Estado democrático y de derecho. La democracia puede tener muchos inconvenientes, pero aún así, es el sistema que mejor funciona. Como dijo Churchill,</p>
+
+<blockquote>
+  Muchas formas de Gobierno se han probado en este mundo de pecado y congoja. Nadie pretende que la democracia es perfecta u omnisapiente. De hecho, se dice que la democracia es la peor forma de gobierno, exceptuando todas esas otras formas que se han probado alguna vez.
+</blockquote>
+
+
+<p>Quizá sus detractores tengan razón y la democracia real -un gobierno del pueblo- sea algo peligroso, y por lo tanto nos tengamos que contentar con una variante <em>light</em>, en la que el Pueblo manda una vez cada cuatro años, y el resto del tiempo deja hacer a los políticos. Pero, entonces, tendremos que plantearnos cual es la esencia de nuestro sistema político y buscarle un buen nombre, porque, desde luego, eso no es en rigor una Democracia.</p>
+
+<p>Como es tarde y este post ya se alarga bastante, dejo la discusión de los demás problemas para futuras entradas.</p>
+
+  </div>
+</article>
+
+
+  
+  
+    <article class="entry" role="article">
+  <div class="meta span1">
+    <time class="date" datetime="" pubdate></time>
+  </div>
+
+  <div class="content span7">
+    
+      <h1 class="entry-title"><a href="/2010/02/08/ha-llegado-momento-democracia-directa/">¿Ha llegado el momento de una Democracia Directa?</a></h1>
+    
+
+    <p>La democracia es el gobierno del pueblo. En un sistema democrático el pueblo es soberano para dirigir los asuntos públicos.</p>
+
+<p>La primera democracia conocida, la de la antigua Atenas, era una <strong>democracia directa</strong>. Los propios ciudadanos se reunían en la colina de Pnyx para elegir los cargos públicos y tomar las decisiones que afectaban a la Ciudad Estado. Cada ciudadano tenía su propia voz y su propio voto.</p>
+
+<p>Después de la Antigua Grecia la democracia desapareció de la historia para aparecer posteriormente en Suiza, Reino Unido, Estados Unidos, Francia, etc. Hoy en día la mayoría de los países del mundo se consideran a sí mismos democráticos, y muchos lo son en cierta medida.</p>
+
+<p>Sin embargo, en su reaparición en la Edad Moderna, la democracia se encontró con un problema logístico: Es físicamente imposible que todos los ciudadanos de un estado moderno se reúnan en una asamblea para discutir y votar las decisiones y leyes públicas.  Los estados acabaron reemplazando la democracia directa por un sustituto descafeinado llamado <strong>democracia representativa</strong>. En la democracia representativa los ciudadanos siguen siendo soberanos, pero en vez discutir y votar cada cuestión directamente,  eligen a unos representantes, los políticos electos, para que voten y discutan por ellos.</p>
+
+<p>En teoría, en una democracia representativa los políticos no están para mandar sino para representar a los ciudadanos soberanos.</p>
+
+<p>Y digo en teoría, porque en la práctica los ciudadanos no suelen verse identificados con la clase política y con sus intereses.</p>
+
+<p>Los políticos temen perder el apoyo ciudadano, pero en el <em>ínterin</em> entre elección y elección se sienten autorizados a hacer lo que les dé la gana sin volver a contar con la ciudadanía.</p>
+
+<p>El resultado es que la ciudadanía se siente cada vez más ajena a la vida política.</p>
+
+<p>La cuestión es que nos encontramos en el comienzo de una nueva era, donde todos estos problemas dejan de tener sentido. Gracias a Internet y a los modernos medios de comunicación las antiguas limitaciones que impedían llevar a cabo una democracia directa ya no existen. Internet hace posible que los ciudadanos puedan expresar su opinión y votar sobre cualquier asunto público que les afecte desde su propia casa.</p>
+
+<p>La pregunta que deberíamos hacernos es: ¿Ha llegado el momento de probar una Democracia Directa?</p>
+
+  </div>
+</article>
+
+
+  
+
+  <div class="span7 offset1">
+    
+      <a href="/page5">&larr; Más antiguos</a>
+    
+    |
+    
+      
+      <a class="next" href="/page3">Más  recientes&rarr;</a>
+      
+    
+  </div>
+
+
+</div>
+
+      </section>
+      <aside id="sidebar" class="offset1 span3">
+        <nav role="navigation">
+  <ul class="main-navigation">
+    <form action="http://google.es/search" method="get" class="form-search">
+      <fieldset role="search">
+        <input type="hidden" name="sitesearch" value="codigocomestible.com" />
+        <input class="search" type="text" name="q" results="0" placeholder="buscar"/>
+      </fieldset>
+    </form>
+    <li>
+      <a href="/atom.xml">
+        Feed RSS
+      </a>
+    </li>
+    <li><a href="/archives">Archivo</a></li>
+  </ul>
+</nav>
+
+<section>
+  <h4>Artículos recientes</h4>
+  <ul id="recent_posts">
+    
+    <li class="post">
+      <a href="/2011/01/24/flujo-la-psicologia-de-la-experiencia-optima/">Flujo, la psicología de la experiencia óptima</a>
+    </li>
+    
+    <li class="post">
+      <a href="/2010/09/24/100-de-cobertura-del-codigo/">100% de cobertura del código</a>
+    </li>
+    
+    <li class="post">
+      <a href="/2010/07/07/software-con-opinion/">Software con opinión</a>
+    </li>
+    
+    <li class="post">
+      <a href="/2010/07/06/paralisis-por-analisis/">Parálisis por análisis</a>
+    </li>
+    
+    <li class="post">
+      <a href="/2010/07/06/fuerza-de-voluntad-recurso-finito/">La fuerza de voluntad es un recurso finito</a>
+    </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h4>Dónde puedes encontrarme</h4>
+
+  <ul>
+    <li>
+      <a href="mailto: afcapel at gmail dot com">
+        <img src="/images/email_32.png" width="32" height="32"/>
+        E-mail
+      </a>
+    </li>
+
+   <li>
+    <a href="http://twitter.com/afcapel">
+      <img src="/images/twitter_32.png" width="32" height="32"/>
+      Twitter
+    </a>
+   </li>
+
+   <li>
+    <a href="http://github.com/afcapel">
+      <img src="/images/github_32.png" width="32" height="32"/>
+      Github
+    </a>
+   </li>
+
+  <li>
+    <a href="https://plus.google.com/107729440292621307525?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32"/>
+      Google+
+    </a>
+  </li>
+</ul>
+</section>
+      </aside>
+    </div>
+
+
+    <footer role="contentinfo" id="main-footer">
+      <p>Copyright &copy; 2013 - Alberto Fernández-Capel</p>
+    </footer>
+  </div>
+
+  <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35983929-1']);
+  _gaq.push(['_setDomainName', 'codigocomestible.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</body>
+</html>

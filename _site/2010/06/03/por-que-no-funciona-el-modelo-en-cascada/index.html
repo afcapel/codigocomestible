@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+
+<head>
+  <meta charset="utf-8">
+  <title>Por qué no funciona el modelo en cascada - </title>
+  <meta name="author" content="Alberto Fernández-Capel">
+
+  
+  <meta name="description" content="
+  
+    
+  
+  
+    Por qué no funciona el modelo en cascada
+    
+
+La ingeniería del software es una recién nacida: la humanidad lleva miles de años...">
+  
+
+  <link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700|Open+Sans' rel='stylesheet' type='text/css'>
+  <link href="/stylesheets/comestible.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+  <script src="/javascripts/socialite.min.js"></script>
+  <link href="" rel="alternate" title="" type="application/atom+xml">
+</head>
+<body>
+  <div class="container">
+    <header role="banner" id="main-header" class="row">
+      <hgroup>
+        <h1 id="blog-title" class="span3 offset1"><a href="//">Código Comestible</a></h1>
+        <h2 id="blog-subtitle" class="span6">"La belleza será comestible o no será" <br/> - Salvador Dalí</h2>
+      </hgroup>
+    </header>
+
+    <div class="row">
+      <section id="main" class="span8">
+        <article class="entry row" role="article" id="post">
+  <div class="meta span1">
+    <time class="date" datetime="" pubdate></time>
+  </div>
+  <div class="content span7">
+    <h1 class="title">Por qué no funciona el modelo en cascada</h1>
+    <p><a href="http://www.flickr.com/photos/tonymangan/611780383/" title="Lumsdale Waterfall 1 by ~~Tone~~, on Flickr"><img src="http://farm2.static.flickr.com/1133/611780383_6e7c8d2bc8.jpg" width="363" height="500" alt="Lumsdale Waterfall 1" /></a></p>
+
+<p>La ingeniería del software es una recién nacida: la humanidad lleva miles de años construyendo edificios, barcos y puentes, pero sólo unas décadas construyendo software.</p>
+
+<p>Cuando nació la ingeniería del software se fijó en sus hermanas para descubrir como se hace <em>eso</em> de construir sistemas complejos. Y, básicamente, la ingeniería del software copió los métodos tradicionales en lo que se conoce como <em>Modelo en Cascada</em>.</p>
+
+<p>En el Modelo en Cascada, los ingenieros hacen  primero un análisis de los requisitos del proyecto: Si se va a construir un puente, hay que saber qué capacidad de tráfico tiene que atravesar el puente, los vientos, mareas y temblores que debe soportar, etc. Con todos estos requisitos se hace un documento funcional explicando cómo debe funcionar el puente cuando esté acabado. Al documento funcional le sigue un diseño técnico: en una obra serían los planos que modelarían el puente, las instrucciones para construir el puente. Una vez se tiene un plan, hay que construir el puente. Cuando el puente está construido, pasamos a la fase de mantenimiento. Este es, muy resumido, el modelo en cascada.</p>
+
+<p>Este sistema funciona razonablemente bien en las ingenierías tradicionales, pero fracasa estrepitosamente en la ingeniería del software. ¿Por qué? Porque <strong>los requisitos y el proceso de construcción del software son de naturaleza completamente distinta al los de la construcción de un puente</strong>.</p>
+
+<p>Cuando se construye un puente, todos los requisitos y las funciones que debe cumplir <strong>deben estar especificados de antemano</strong>. Hay que hacer un plano que detalle al milímetro cómo va a ser el puente y seguirlo al pie de la letra. Una vez se empieza a construir un puente, no podemos cambiar de opinión a la mitad y decir, "<em>no nos habíamos dado cuenta, pero necesitamos que los barcos puedan navegar por debajo del puente. Cámbiame el puente que estas haciendo por un puente levadizo</em>". Por desgracia, una vez hemos puesto los cimientos, el diseño no se puede alterar demasiado.</p>
+
+<p>En cambio, <strong>en el desarrollo de software los requisitos cambian constantemente</strong>. Y eso no es algo malo, sino que es una ventaja que deben aprovechar los buenos desarrolladores.</p>
+
+<p>En vez de planificar todo de antemano, y seguir el plan al pie de la letra, es bueno permitir cierta flexibilidad para que el proyecto vaya creciendo orgánicamente y se vaya definiendo con el tiempo. Puede que el cliente se dé cuenta de que lo que ha pedido no es exactamente lo que necesita, sino que, en realidad, quiere un producto ligeramente diferente. O muy diferente. Eso está bien: <strong>nos hemos dado cuenta y podemos corregirlo antes de que el cliente se quede con un producto que no resuelve sus problemas. Cambiar el diseño a mitad de proyecto hace que el producto final sea más eficiente y, sobre todo, satisfaga mejor las necesidades del cliente</strong>.</p>
+
+<p>Muchos proyectos tremendamente exitosos empezaron siendo siendo una cosa y terminaron siendo otra completamente distinta, pero fue <strong>precisamente este cambio el que les permitió triunfar</strong>. Flickr, por ejemplo, empezó como un juego online, pero los desarrolladores se dieron cuenta de que una inocente funcionalidad que permitía a los jugadores compartir fotos se estaba convirtiendo en la estrella de su servicio. Fueron inteligentes y cambiaron sus requisitos iniciales; acabaron convirtiendo un juego medianamente exitoso, en un servicio para compartir fotos <em>tremendamente</em> exitoso.</p>
+
+<p>Flickr no es un caso único. Blogger nació como un servicio de gestión de proyectos; en sus comienzos, Paypal era una plataforma para hacer micropagos con las Palm Pilot... Puede decirse que la mayoría de los proyectos exitosos no lo son por sus ideas originales, sino por la <strong>facilidad que tienen de adaptarse a los cambios y a las nuevas oportunidades</strong>.</p>
+
+<p>Pero -estaréis pensando- ¡cambiar los requisitos a mitad de un proyecto tiene un coste muy grande! Eso no se puede hacer. ¿No?</p>
+
+<p>Sí y no. Cambiar los requisitos tiene un coste muy grande cuando se sigue el modelo en cascada, en el que toda <strong>la planificación se hace de antemano, y cada fase depende muchísimo de que la anterior se haya hecho bien</strong>. En esas circunstancias, cambiar la planificación significa echar por tierra mucho esfuerzo y trabajo.</p>
+
+<p>Pero el modelo en cascada no es la única manera de hacer software.</p>
+
+<p><a href="http://www.flickr.com/photos/44799719@N00/324947287/" title="Jägala waterfall  part III by fireramsey, on Flickr"><img src="http://farm1.static.flickr.com/144/324947287_feb20f51ea.jpg" width="500" height="375" alt="Jägala waterfall  part III" /></a>
+<em>(Las cascadas son bonitas, pero no para hacer software)</em></p>
+
+<p>En los últimos diez años han surgido una variedad de <strong>metodologías ágiles</strong> que apuestan por desarrollar software de forma <strong>iterativa</strong>: se van añadiendo funcionalidades en iteraciones pequeñas, de unas pocas semanas. Tras cada iteración se evalúan los requisitos para ver si siguen siendo las necesidades <strong>reales</strong> del cliente, y en consecuencia se planea la próxima iteración. Es natural posponer los problemas hasta que tengamos más datos, y si necesitamos cambiar la planificación, tampoco perdemos tanto trabajo porque, en realidad, tampoco hemos invertido tanto esfuerzo planificando.</p>
+
+<p>En el desarrollo ágil los cambios de requisitos no se ven como un inconveniente, sino como una ventaja potencial. Como dice <a href="http://agilemanifesto.org/">el Manifiesto Ágil</a>:</p>
+
+<blockquote>Valoramos más la respuesta ante el cambio que el seguir un plan.
+...
+Aceptamos que los requisitos cambien, incluso en etapas tardías del desarrollo. Los procesos Ágiles aprovechan el cambio para proporcionar ventaja competitiva al cliente.</blockquote>
+
+
+
+    <div id="share">
+      <ul id="social-links">
+  <li>
+      <a target="_blank" rel="nofollow" data-url="" data-text="" class="socialite twitter-share" href="http://twitter.com/share">
+          <span class="vhidden">Share on Twitter</span>
+      </a>
+  </li>
+  <li>
+      <a target="_blank" rel="nofollow" data-href="" class="socialite googleplus-one" href="https://plusone.google.com/_/+1/confirm?hl=en&amp;url=" data-annotation="none">
+        <span class="vhidden">Share on Google+</span>
+      </a>
+  </li>
+  <li>
+      <a target="_blank" rel="nofollow" data-show-faces="false" data-width="60" data-send="false" data-href="" class="socialite facebook-like" href="http://www.facebook.com/sharer.php?u=">
+          <span class="vhidden">Share on Facebook</span>
+      </a>
+  </li>
+</ul>
+
+<script type="text/javascript">
+  $(function(){
+    Socialite.load('#share');
+  })
+</script>
+
+    </div>
+
+    <section id="comments">
+      <h3>Comments</h3>
+      <div id="disqus_thread" aria-live="polite"><div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'codigocomestible'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+    </section>
+  </div>
+</article>
+      </section>
+      <aside id="sidebar" class="offset1 span3">
+        <nav role="navigation">
+  <ul class="main-navigation">
+    <form action="http://google.es/search" method="get" class="form-search">
+      <fieldset role="search">
+        <input type="hidden" name="sitesearch" value="codigocomestible.com" />
+        <input class="search" type="text" name="q" results="0" placeholder="buscar"/>
+      </fieldset>
+    </form>
+    <li>
+      <a href="/atom.xml">
+        Feed RSS
+      </a>
+    </li>
+    <li><a href="/archives">Archivo</a></li>
+  </ul>
+</nav>
+
+<section>
+  <h4>Artículos recientes</h4>
+  <ul id="recent_posts">
+    
+    <li class="post">
+      <a href="/2011/01/24/flujo-la-psicologia-de-la-experiencia-optima/">Flujo, la psicología de la experiencia óptima</a>
+    </li>
+    
+    <li class="post">
+      <a href="/2010/09/24/100-de-cobertura-del-codigo/">100% de cobertura del código</a>
+    </li>
+    
+    <li class="post">
+      <a href="/2010/07/07/software-con-opinion/">Software con opinión</a>
+    </li>
+    
+    <li class="post">
+      <a href="/2010/07/06/paralisis-por-analisis/">Parálisis por análisis</a>
+    </li>
+    
+    <li class="post">
+      <a href="/2010/07/06/fuerza-de-voluntad-recurso-finito/">La fuerza de voluntad es un recurso finito</a>
+    </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h4>Dónde puedes encontrarme</h4>
+
+  <ul>
+    <li>
+      <a href="mailto: afcapel at gmail dot com">
+        <img src="/images/email_32.png" width="32" height="32"/>
+        E-mail
+      </a>
+    </li>
+
+   <li>
+    <a href="http://twitter.com/afcapel">
+      <img src="/images/twitter_32.png" width="32" height="32"/>
+      Twitter
+    </a>
+   </li>
+
+   <li>
+    <a href="http://github.com/afcapel">
+      <img src="/images/github_32.png" width="32" height="32"/>
+      Github
+    </a>
+   </li>
+
+  <li>
+    <a href="https://plus.google.com/107729440292621307525?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32"/>
+      Google+
+    </a>
+  </li>
+</ul>
+</section>
+      </aside>
+    </div>
+
+
+    <footer role="contentinfo" id="main-footer">
+      <p>Copyright &copy; 2013 - Alberto Fernández-Capel</p>
+    </footer>
+  </div>
+
+  <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35983929-1']);
+  _gaq.push(['_setDomainName', 'codigocomestible.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</body>
+</html>

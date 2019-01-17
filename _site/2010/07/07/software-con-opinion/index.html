@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+
+<head>
+  <meta charset="utf-8">
+  <title>Software con opinión - </title>
+  <meta name="author" content="Alberto Fernández-Capel">
+
+  
+  <meta name="description" content="
+  
+    
+  
+  
+    Software con opinión
+    En el desarrollo de software tener muchas opciones entre las que elegir puede ser algo positivo, sin em...">
+  
+
+  <link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700|Open+Sans' rel='stylesheet' type='text/css'>
+  <link href="/stylesheets/comestible.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+  <script src="/javascripts/socialite.min.js"></script>
+  <link href="" rel="alternate" title="" type="application/atom+xml">
+</head>
+<body>
+  <div class="container">
+    <header role="banner" id="main-header" class="row">
+      <hgroup>
+        <h1 id="blog-title" class="span3 offset1"><a href="//">Código Comestible</a></h1>
+        <h2 id="blog-subtitle" class="span6">"La belleza será comestible o no será" <br/> - Salvador Dalí</h2>
+      </hgroup>
+    </header>
+
+    <div class="row">
+      <section id="main" class="span8">
+        <article class="entry row" role="article" id="post">
+  <div class="meta span1">
+    <time class="date" datetime="" pubdate></time>
+  </div>
+  <div class="content span7">
+    <h1 class="title">Software con opinión</h1>
+    <p>En el desarrollo de software tener muchas opciones entre las que elegir puede ser algo positivo, sin embargo <a href="http://codigocomestible.com/2010/07/06/paralisis-por-analisis/">a veces tener demasiadas opciones también puede ser un problema</a>.</p>
+
+<p>Pensemos, por ejemplo, en los frameworks de javascript. Existen docenas de ellos: jQuery, Prototype, Yahoo UI, Dojo, ExtJs,  GWT, MooTools... Todos son buenos y elegir la mejor opción es algo muy complicado: para encontrarla deberíamos pasar un tiempo considerable evaluando cada uno de ellos, sus ventajas y sus inconvenientes, y como solucionan los problemas que tenemos.</p>
+
+<p>Pero, ¿merece la pena tanto esfuerzo? Probablemente no. Aunque haya un framework que sea inherentemente mejor que los demás, vamos a perder más tiempo buscándolo y evaluando posibles opciones, que si utilizásemos directamente el segundo o el tercer mejor framework, porque, entre los más conocidos todos son <em>suficientemente</em> buenos.</p>
+
+<p>En mi opinión, la mejor solución para este problema es la que toma Ruby on Rails. Rails es <em><a href="http://gettingreal.37signals.com/ch04_Make_Opinionated_Software.php">Opinionated Software</a></em>, <strong>software con opinión</strong>. Cuando creamos una aplicación nueva con Rails, la aplicación viene ya <strong>"con las pilas incluidas"</strong>: ya tiene un framework javascript -prototype- una librería de testing, librería para fixtures , un motor de plantillas, un librería de ORM; la aplicación ya tiene una estructura: los controladores van en este directorio, las vistas en este otro; Rails utiliza <em><a href="http://es.wikipedia.org/wiki/Convención_sobre_Configuración">Convention Over Configuration</a></em> para darle nombre a las tablas en la base de datos, a las vistas y a los controladores; todas las tablas utilizan como clave principal un id autonumérico. Nada más empezar, el equipo de Rails ya ha tomado un montón de decisiones difíciles por ti.</p>
+
+<p>Todas estas decisiones son discutibles, pero en la práctica resulta que en la inmensa mayoría de los casos, las decisiones que ha tomado el equipo de rails son <em>suficientemente</em> buenas. <strong>Rails es software con opinión, dice: yo hago las cosas así. Si luego quieres cambiar cualquier cosa, puedes hacerlo</strong>. Ruby es un lenguaje tan dinámico que eso no suele ser problema: aunque rails venga, por ejemplo, con su ORM -ActiveRecord- o su motor de plantillas -ERB-, se puede sustituir ActiveRecord por DataMapper o ERB por Haml. Yo, por ejemplo, cuando programo con Rails suelo utilizar jQuery en vez de Prototype, el framework javasacript que trae Rails por defecto.</p>
+
+<p>Si lo hago es porque tengo claro lo que quiero y sé lo que estoy haciendo. Pero si no lo tienes claro, Rails ya te da un stack que funciona muy bien y te ahorrará muchas indecisiones y quebraderos de cabeza.</p>
+
+
+    <div id="share">
+      <ul id="social-links">
+  <li>
+      <a target="_blank" rel="nofollow" data-url="" data-text="" class="socialite twitter-share" href="http://twitter.com/share">
+          <span class="vhidden">Share on Twitter</span>
+      </a>
+  </li>
+  <li>
+      <a target="_blank" rel="nofollow" data-href="" class="socialite googleplus-one" href="https://plusone.google.com/_/+1/confirm?hl=en&amp;url=" data-annotation="none">
+        <span class="vhidden">Share on Google+</span>
+      </a>
+  </li>
+  <li>
+      <a target="_blank" rel="nofollow" data-show-faces="false" data-width="60" data-send="false" data-href="" class="socialite facebook-like" href="http://www.facebook.com/sharer.php?u=">
+          <span class="vhidden">Share on Facebook</span>
+      </a>
+  </li>
+</ul>
+
+<script type="text/javascript">
+  $(function(){
+    Socialite.load('#share');
+  })
+</script>
+
+    </div>
+
+    <section id="comments">
+      <h3>Comments</h3>
+      <div id="disqus_thread" aria-live="polite"><div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'codigocomestible'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+    </section>
+  </div>
+</article>
+      </section>
+      <aside id="sidebar" class="offset1 span3">
+        <nav role="navigation">
+  <ul class="main-navigation">
+    <form action="http://google.es/search" method="get" class="form-search">
+      <fieldset role="search">
+        <input type="hidden" name="sitesearch" value="codigocomestible.com" />
+        <input class="search" type="text" name="q" results="0" placeholder="buscar"/>
+      </fieldset>
+    </form>
+    <li>
+      <a href="/atom.xml">
+        Feed RSS
+      </a>
+    </li>
+    <li><a href="/archives">Archivo</a></li>
+  </ul>
+</nav>
+
+<section>
+  <h4>Artículos recientes</h4>
+  <ul id="recent_posts">
+    
+    <li class="post">
+      <a href="/2011/01/24/flujo-la-psicologia-de-la-experiencia-optima/">Flujo, la psicología de la experiencia óptima</a>
+    </li>
+    
+    <li class="post">
+      <a href="/2010/09/24/100-de-cobertura-del-codigo/">100% de cobertura del código</a>
+    </li>
+    
+    <li class="post">
+      <a href="/2010/07/07/software-con-opinion/">Software con opinión</a>
+    </li>
+    
+    <li class="post">
+      <a href="/2010/07/06/paralisis-por-analisis/">Parálisis por análisis</a>
+    </li>
+    
+    <li class="post">
+      <a href="/2010/07/06/fuerza-de-voluntad-recurso-finito/">La fuerza de voluntad es un recurso finito</a>
+    </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h4>Dónde puedes encontrarme</h4>
+
+  <ul>
+    <li>
+      <a href="mailto: afcapel at gmail dot com">
+        <img src="/images/email_32.png" width="32" height="32"/>
+        E-mail
+      </a>
+    </li>
+
+   <li>
+    <a href="http://twitter.com/afcapel">
+      <img src="/images/twitter_32.png" width="32" height="32"/>
+      Twitter
+    </a>
+   </li>
+
+   <li>
+    <a href="http://github.com/afcapel">
+      <img src="/images/github_32.png" width="32" height="32"/>
+      Github
+    </a>
+   </li>
+
+  <li>
+    <a href="https://plus.google.com/107729440292621307525?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32"/>
+      Google+
+    </a>
+  </li>
+</ul>
+</section>
+      </aside>
+    </div>
+
+
+    <footer role="contentinfo" id="main-footer">
+      <p>Copyright &copy; 2013 - Alberto Fernández-Capel</p>
+    </footer>
+  </div>
+
+  <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35983929-1']);
+  _gaq.push(['_setDomainName', 'codigocomestible.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</body>
+</html>

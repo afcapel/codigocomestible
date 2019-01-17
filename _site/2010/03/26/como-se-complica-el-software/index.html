@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+
+<head>
+  <meta charset="utf-8">
+  <title>Cómo se complica el software - </title>
+  <meta name="author" content="Alberto Fernández-Capel">
+
+  
+  <meta name="description" content="
+  
+    
+  
+  
+    Cómo se complica el software
+    Cuando se inicia el diseño de una aplicación los desarrolladores siempre piensan que todo saldr...">
+  
+
+  <link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700|Open+Sans' rel='stylesheet' type='text/css'>
+  <link href="/stylesheets/comestible.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+  <script src="/javascripts/socialite.min.js"></script>
+  <link href="" rel="alternate" title="" type="application/atom+xml">
+</head>
+<body>
+  <div class="container">
+    <header role="banner" id="main-header" class="row">
+      <hgroup>
+        <h1 id="blog-title" class="span3 offset1"><a href="//">Código Comestible</a></h1>
+        <h2 id="blog-subtitle" class="span6">"La belleza será comestible o no será" <br/> - Salvador Dalí</h2>
+      </hgroup>
+    </header>
+
+    <div class="row">
+      <section id="main" class="span8">
+        <article class="entry row" role="article" id="post">
+  <div class="meta span1">
+    <time class="date" datetime="" pubdate></time>
+  </div>
+  <div class="content span7">
+    <h1 class="title">Cómo se complica el software</h1>
+    <p>Cuando se inicia el diseño de una aplicación los desarrolladores siempre piensan que todo saldrá bien. En la imaginación del desarrollador el sistema es claro y sencillo, cada pieza encaja en su sitio y todo funciona como una máquina perfectamente engranada.</p>
+
+<p>Sin embargo, el software lioso y mal diseñado, en el que todo es más complicado de lo que debería, también existe. ¡Y tanto qué existe!  Cualquier desarrollador conoce al menos una aplicación compleja y confusa, un verdadero lío inmantenible. En cambio, lo contrario es una rareza desconocida: una aplicación que peque de ser más sencilla de lo que debería. ¿Quién ha visto algo así?</p>
+
+<p>Si los desarrolladores de software aspiran a la sencillez, ¿qué es lo que acaba convirtiendo al software en un embrollo pegajoso y sucio? ¿Qué pasa durante el proceso de desarrollo de software para que el hermoso y sencillo diseño inicial acabe convertido en un nudo gordiano? ¿Cuales son los pasos que desencadenan la catástrofe?</p>
+
+<p>Para entenderlo, podemos fijarnos en otros campos donde la calidad del producto se degrada imperceptiblemente.</p>
+
+<p>Imaginemos, por ejemplo, una empresa de reparto a domicilio de pizzas. La empresa hace unas pizzas de muy buena calidad que gustan al público y aumenta cada año sus beneficios hasta que toca un techo que es difícil superar (simplemente, porque la mayoría de sus clientes potenciales ya están comprando el producto). Entonces puede surgir algún ejecutivo listillo -y <strong>siempre</strong> aparecerá un ejecutivo listillo- que, armado de gráficos con colores llamativos y de un powerpoint con muchos puntos con bolitas, exponga algo como lo siguiente:</p>
+
+<p><em>"Hemos hecho un estudio de mercado y hemos comprobado que podemos hacer las pizzas medio centímetro más pequeñas sin que los consumidores noten nada. Como nuestra empresa vende tropecientos millones de pizzas al año, el ahorro en los materias primas y costes de producción nos puede generar unos beneficios de un porrón y medio de millones al año".</em></p>
+
+<p>Y el ejecutivo listillo puede que tenga razón: una diferencia de medio centímetro no es nada tan grave como para que el consumidor deje de comprar la pizza. Sin embargo, al seguir este camino se abre un precedente peligroso: dentro de unos meses, otro ejecutivo listillo, celoso del primer ejecutivo listillo, propondrá utilizar un queso más barato y así ahorrar otro puñado de millones. También se pueden abaratar los precios de cada uno de los demás ingredientes, y reducir el tiempo que se tarda en hacer una pizza, simplemente amasando menos la masa; ahorrar un poco más en las condiciones laborales de los trabajadores, aunque eso haga que estén menos contentos y rindan menos y trabajen peor. Y unos meses más tarde se le puede quitar otro centímetro al tamaño de la pizza.</p>
+
+<p>Son cambios pequeños que, por separado, no tendrían demasiada repercusión en la calidad de la pizza. Pero <strong>si los juntamos todos</strong>, al final obtenemos una verdadera porquería de pizza. <strong>Pequeños cambios que individualmente no son importantes, al sumarse pueden crear una gran diferencia</strong>.</p>
+
+<p>Con el desarrollo de software ocurre lo mismo. Nadie quiere hacer un sistema complicado, pero invariablemente el desarrollador quiere mejorar su programa y va introduciendo pequeñas complejidades en el código. Un poquito aquí y un poquito allá. Al fin y al cabo, no son cosas tan complejas, se dice, no pueden hacer demasiado daño. <strong>Pero sumando docenas de pequeñas complejidades se puede obtener un sistema muy complicado</strong>. Y una vez que el sistema se ha complicado, volver atrás y simplificarlo es mucho más difícil de lo que hubiera sido hacerlo sencillo desde el principio.</p>
+
+<p>La única manera de evitar que el software acabe siendo un lío monumental es siendo muy exigente con cualquier cosa que complique el código. <a href="http://gettingreal.37signals.com/ch10_Less_Software.php">¿Realmente necesita el programa esta funcionalidad?</a> Un error al que tenemos tendencia los desarrolladores es solucionar problemas que no existen. Hacer un software que podría resolver casos muy generales, que en teoría podrían presentarse, pero que en la práctica nunca se presentan. Y, sin embargo, <a href="http://blogs.oreilly.com/digitalmedia/2002/11/martin-fowler-on-flexibility-a.html">todo este código que resuelve casos imaginarios tiene un coste en complejidad</a>.</p>
+
+<p>El consejo más sencillo que se puede seguir al respecto es centrarse siempre en resolver problemas reales.  Como se suele decir:
+<em>no code is simpler than no code.</em></p>
+
+
+    <div id="share">
+      <ul id="social-links">
+  <li>
+      <a target="_blank" rel="nofollow" data-url="" data-text="" class="socialite twitter-share" href="http://twitter.com/share">
+          <span class="vhidden">Share on Twitter</span>
+      </a>
+  </li>
+  <li>
+      <a target="_blank" rel="nofollow" data-href="" class="socialite googleplus-one" href="https://plusone.google.com/_/+1/confirm?hl=en&amp;url=" data-annotation="none">
+        <span class="vhidden">Share on Google+</span>
+      </a>
+  </li>
+  <li>
+      <a target="_blank" rel="nofollow" data-show-faces="false" data-width="60" data-send="false" data-href="" class="socialite facebook-like" href="http://www.facebook.com/sharer.php?u=">
+          <span class="vhidden">Share on Facebook</span>
+      </a>
+  </li>
+</ul>
+
+<script type="text/javascript">
+  $(function(){
+    Socialite.load('#share');
+  })
+</script>
+
+    </div>
+
+    <section id="comments">
+      <h3>Comments</h3>
+      <div id="disqus_thread" aria-live="polite"><div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'codigocomestible'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+    </section>
+  </div>
+</article>
+      </section>
+      <aside id="sidebar" class="offset1 span3">
+        <nav role="navigation">
+  <ul class="main-navigation">
+    <form action="http://google.es/search" method="get" class="form-search">
+      <fieldset role="search">
+        <input type="hidden" name="sitesearch" value="codigocomestible.com" />
+        <input class="search" type="text" name="q" results="0" placeholder="buscar"/>
+      </fieldset>
+    </form>
+    <li>
+      <a href="/atom.xml">
+        Feed RSS
+      </a>
+    </li>
+    <li><a href="/archives">Archivo</a></li>
+  </ul>
+</nav>
+
+<section>
+  <h4>Artículos recientes</h4>
+  <ul id="recent_posts">
+    
+    <li class="post">
+      <a href="/2011/01/24/flujo-la-psicologia-de-la-experiencia-optima/">Flujo, la psicología de la experiencia óptima</a>
+    </li>
+    
+    <li class="post">
+      <a href="/2010/09/24/100-de-cobertura-del-codigo/">100% de cobertura del código</a>
+    </li>
+    
+    <li class="post">
+      <a href="/2010/07/07/software-con-opinion/">Software con opinión</a>
+    </li>
+    
+    <li class="post">
+      <a href="/2010/07/06/paralisis-por-analisis/">Parálisis por análisis</a>
+    </li>
+    
+    <li class="post">
+      <a href="/2010/07/06/fuerza-de-voluntad-recurso-finito/">La fuerza de voluntad es un recurso finito</a>
+    </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h4>Dónde puedes encontrarme</h4>
+
+  <ul>
+    <li>
+      <a href="mailto: afcapel at gmail dot com">
+        <img src="/images/email_32.png" width="32" height="32"/>
+        E-mail
+      </a>
+    </li>
+
+   <li>
+    <a href="http://twitter.com/afcapel">
+      <img src="/images/twitter_32.png" width="32" height="32"/>
+      Twitter
+    </a>
+   </li>
+
+   <li>
+    <a href="http://github.com/afcapel">
+      <img src="/images/github_32.png" width="32" height="32"/>
+      Github
+    </a>
+   </li>
+
+  <li>
+    <a href="https://plus.google.com/107729440292621307525?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32"/>
+      Google+
+    </a>
+  </li>
+</ul>
+</section>
+      </aside>
+    </div>
+
+
+    <footer role="contentinfo" id="main-footer">
+      <p>Copyright &copy; 2013 - Alberto Fernández-Capel</p>
+    </footer>
+  </div>
+
+  <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35983929-1']);
+  _gaq.push(['_setDomainName', 'codigocomestible.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</body>
+</html>
